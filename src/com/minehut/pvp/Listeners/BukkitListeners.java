@@ -36,7 +36,7 @@ public class BukkitListeners implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, core);
 
         /* Spawn. todo: load/update via database for spawn updates without needing to restart. */
-        this.spawn = new Location(Bukkit.getServer().getWorlds().get(0), 0, 60, 0);
+        this.spawn = new Location(Bukkit.getServer().getWorlds().get(0), 0, 72, 0);
     }
 
     @EventHandler
