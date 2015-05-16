@@ -1,8 +1,8 @@
 package com.minehut.pvp;
 
-public enum ArenaType {
+enum ArenaType {
 
-	BOW("BOW"), SWORD("SWORD"), BOTH("BOTH");
+	ranged("ranged"), melee("melee"), both("both");
 	
 	private String type;
 	

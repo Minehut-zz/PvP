@@ -23,7 +23,7 @@ public class Arena {
 	
 	public ArrayList<UUID> team1 = new ArrayList<UUID>(), team2 = new ArrayList<UUID>();
 	
-	public ArenaType type = ArenaType.SWORD;
+	public ArenaType type = ArenaType.melee;
 	
 	public transient Core core;
 	

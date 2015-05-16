@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -22,7 +23,9 @@ public class Core extends JavaPlugin implements Listener {
 	
 	public API api;
 	
-	private QueueManager queueManager;
+	public QueueManager queueManager;
+	
+	public ArenaManager arenaManager;
 	
 	@Override
 	public void onEnable() {
@@ -35,8 +38,9 @@ public class Core extends JavaPlugin implements Listener {
 		}
 		Bukkit.getPluginManager().registerEvents(this, this);
 		this.queueManager = new QueueManager(this);
+		this.arenaManager = new ArenaManager(this);
 		
-		
+		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 		
 	//	Arena testArena = new Arena();
 	//	System.out.println(gson.toJson(testArena));
@@ -50,7 +54,7 @@ public class Core extends JavaPlugin implements Listener {
         		if (args[0]!=null) {
         			if (args[0].equalsIgnoreCase("debug")) {
         				Player player = (Player)sender;
-        				for (Arena arena : this.getArenas()) {
+        				for (Arena arena : this.arenaManager.getArenas()) {
         					Bukkit.broadcastMessage(arena.id + ":" +arena.name + " | active:" + arena.active);
         					Bukkit.broadcastMessage("�cYou are " + ((this.queueManager.isPlayerInQueue(player.getUniqueId())?"":"not ") + "in queue."));
         					if (this.queueManager.isPlayerInQueue(player.getUniqueId())) {
@@ -75,22 +79,7 @@ public class Core extends JavaPlugin implements Listener {
         }
         return false;
     }
-    
-	public ArrayList<Arena> getArenas() {
-		try {
-			PreparedStatement statement = this.api.getStatManager().getMySQL().getConnection().prepareStatement("select * from `arenas`");
-			ResultSet res = statement.executeQuery();
-			ArrayList<Arena> arenas = new ArrayList<Arena>();
-			while (res.next()) {
-				Arena loadedArena = this.gson.fromJson(res.getString("arena_json"), Arena.class);
-				loadedArena.id = res.getInt("id");
-				arenas.add(loadedArena);
-			}
-			return arenas;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+	
+
 	
 }

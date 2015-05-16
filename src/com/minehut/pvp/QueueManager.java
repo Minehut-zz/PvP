@@ -3,6 +3,9 @@ package com.minehut.pvp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,6 +23,32 @@ public class QueueManager {
 		return new Date(this.getTestLong(uuid));
 	}
 	
+	public ArrayList<QueuePlayer> getPlayersInQueue(ArenaType type) {
+		try {
+			PreparedStatement statement = this.core.api.getStatManager().getMySQL().getConnection().prepareStatement("select * from `queue` where `type` = '" + type.toString() + "'");
+			ResultSet res = statement.executeQuery();
+			ArrayList<QueuePlayer> players = new ArrayList<QueuePlayer>();
+			while (res.next()) {
+				QueuePlayer loadedPlayer = new QueuePlayer(this, UUID.fromString(res.getString("uuid")), res.getLong("join_time"), ArenaType.valueOf(res.getString("type")));
+				players.add(loadedPlayer);
+			}
+			Collections.sort(players, new JoinTimeComparator());
+			return players;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public class JoinTimeComparator implements Comparator<QueuePlayer> {
+		
+		@Override
+		public int compare(QueuePlayer arg0, QueuePlayer arg1) {
+			return arg1.getSecondsInQueue() - arg0.getSecondsInQueue();
+		}
+	}
+	
+ 	
 	public long getTestLong(UUID uuid) {
 		
 		try {
