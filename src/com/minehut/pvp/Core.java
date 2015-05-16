@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import com.minehut.pvp.Listeners.BukkitListeners;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -26,6 +28,8 @@ public class Core extends JavaPlugin implements Listener {
 	public QueueManager queueManager;
 	
 	public ArenaManager arenaManager;
+
+	public BukkitListeners bukkitListeners;
 	
 	@Override
 	public void onEnable() {
@@ -39,6 +43,7 @@ public class Core extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(this, this);
 		this.queueManager = new QueueManager(this);
 		this.arenaManager = new ArenaManager(this);
+		this.bukkitListeners = new BukkitListeners(this);
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 		
@@ -79,7 +84,5 @@ public class Core extends JavaPlugin implements Listener {
         }
         return false;
     }
-	
 
-	
 }
