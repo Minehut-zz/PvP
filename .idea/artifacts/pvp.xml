@@ -3,7 +3,7 @@
     <output-path>$USER_HOME$/minehut/output/plugins</output-path>
     <root id="archive" name="pvp.jar">
       <element id="module-output" name="PvP" />
-      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
     </root>
   </artifact>
 </component>
