@@ -15,16 +15,12 @@ public class ArenaManager {
 	}
 	
 	public ArrayList<Arena> getEmptyArenasOfType(ArenaType type) {
-		ArrayList<Arena> out = this.getArenas();
+		ArrayList<Arena> out = this.getEmptyArenas();
 		Iterator<Arena> i = out.iterator();
 		while (i.hasNext()) {
-			Arena temp = i.next();
-			if (temp.type != type) {
+			if (!i.next().type.equals(type)) {
 				i.remove();
 			}
-			if (temp.active) {
-				i.remove();
-			} 
 		}
 		return out;
 	}
@@ -33,8 +29,7 @@ public class ArenaManager {
 		ArrayList<Arena> out = this.getArenas();
 		Iterator<Arena> i = out.iterator();
 		while (i.hasNext()) {
-			Arena temp = i.next();
-			if (temp.active) {
+			if (i.next().active) {
 				i.remove();
 			}
 		}
@@ -49,6 +44,7 @@ public class ArenaManager {
 			while (res.next()) {
 				Arena loadedArena = this.core.gson.fromJson(res.getString("arena_json"), Arena.class);
 				loadedArena.id = res.getInt("id");
+				loadedArena.core = this.core;
 				arenas.add(loadedArena);
 			}
 			return arenas;

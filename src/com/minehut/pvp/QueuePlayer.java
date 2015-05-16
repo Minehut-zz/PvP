@@ -11,6 +11,10 @@ import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+
 public class QueuePlayer {
 
 	public UUID uuid;
@@ -37,14 +41,25 @@ public class QueuePlayer {
 		return new Date(this.join_time);
 	}
 	
+	public OfflinePlayer getPlayer() {
+		return Bukkit.getOfflinePlayer(this.uuid);
+	}
+	
 	public int getSecondsInQueue() {
-		
+		int out = 0;
 		Map<TimeUnit, Long> tempTimes = this.computeDiff(this.getJoinDate(), new Date());
 		for (Entry<TimeUnit, Long> set : tempTimes.entrySet()) {
-			System.out.println(set.getKey() + " | " + set.getValue());
+			if (set.getKey().equals(TimeUnit.SECONDS)) {
+				out += set.getValue();
+			} else
+			if (set.getKey().equals(TimeUnit.MINUTES)) {
+				out += set.getValue() * 60;
+			} else
+			if (set.getKey().equals(TimeUnit.HOURS)) {
+				out += (set.getValue() * 60) * 60;
+			}
 		}
-		
-		return 0;
+		return out;
 	}
 	
 	public Map<TimeUnit,Long> computeDiff(Date date1, Date date2) {

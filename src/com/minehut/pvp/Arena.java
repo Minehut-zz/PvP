@@ -29,12 +29,14 @@ public class Arena {
 	
 	public Arena(Core core) {
 		this.core = core;
-		//team1Spawn = new HutLocation(Bukkit.getWorlds().get(0).getSpawnLocation());
-		//team2Spawn = new HutLocation(Bukkit.getWorlds().get(0).getSpawnLocation());
+		team1Spawn = new HutLocation(Bukkit.getWorlds().get(0).getSpawnLocation());
+		team2Spawn = new HutLocation(Bukkit.getWorlds().get(0).getSpawnLocation());
 	}
 	
 	public void updateArena() {
-		this.core.api.getStatManager().getMySQL().setData("id", Integer.toString(this.id), "arena_json", new Gson().toJson(this), "arenas");
+		//this.core.api.getStatManager().getMySQL().setData("id", String.format("%d", this.id), "arena_json", arena, "arenas");
+		
+		this.core.api.getStatManager().getMySQL().setData("id", String.format("%d", this.id), "arena_json", new Gson().toJson(this), "arenas");
 	}
 	
 }
