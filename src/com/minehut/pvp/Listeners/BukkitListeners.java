@@ -32,7 +32,6 @@ import org.bukkit.event.player.*;
  */
 public class BukkitListeners implements Listener {
     private Core core;
-    public Location spawn;
 
     public BukkitListeners(Core core) {
         this.core = core;
@@ -40,7 +39,6 @@ public class BukkitListeners implements Listener {
 
         /* Spawn. todo: load/update via database for spawn updates without needing to restart. */
         Bukkit.getWorlds().get(0).setSpawnLocation(0, 72, 0);
-        this.spawn = new Location(Bukkit.getServer().getWorlds().get(0), 0, 72, 0);
     }
 
     @EventHandler
@@ -120,13 +118,13 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        event.setRespawnLocation(this.spawn);
+        event.setRespawnLocation(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
         PlayerUtil.clearAll(event.getPlayer());
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        event.getPlayer().teleport(this.spawn);
+        Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
         if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
@@ -183,7 +181,7 @@ public class BukkitListeners implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         /* Fall below spawn */
         if (event.getPlayer().getLocation().getY() <= 20) {
-            event.setTo(this.spawn);
+            event.setTo(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
         }
     }
 

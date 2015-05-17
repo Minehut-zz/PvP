@@ -7,20 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8464e36-4bda-446d-9c77-4f18dc038940" name="Default" comment="Add death/damage handling">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/kits/KitMelee.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/kits/KitRanged.class" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/commands/CreateArenaCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/kits/KitBoth.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/kits/KitMelee.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/kits/KitRanged.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/Arena$Team.class" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/Arena$Team.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/Arena.class" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/Arena.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/Core.class" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/Core.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/Arena.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/Arena.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/ArenaManager.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/ArenaManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/ArenaType.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/ArenaType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PvP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Core.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6875">
-              <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding>
                 <element signature="e#4320#4330#0" expanded="true" />
                 <element signature="e#4455#4470#0" expanded="true" />
@@ -118,13 +113,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BukkitListeners.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BukkitListeners.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.609375">
+              <caret line="177" column="5" selection-start-line="177" selection-start-column="5" selection-end-line="177" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#7988#7989#0" expanded="true" />
+                <element signature="e#8028#8029#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/QueueManager.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListener.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/DamageManager.java" />
-        <option value="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/ArenaManager.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/commands/CreateArena.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/Arena.java" />
@@ -196,6 +192,7 @@
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/kits/Kitboth.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/kits/KitBoth.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" />
+        <option value="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java" />
       </list>
     </option>
   </component>
@@ -278,6 +275,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PvP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PvP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Listeners" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -547,6 +566,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7988#7989#0" expanded="true" />
+            <element signature="e#8028#8029#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -647,6 +668,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7988#7989#0" expanded="true" />
+            <element signature="e#8028#8029#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -966,16 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/commands/CreateArenaCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1038,8 +1051,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6875">
-          <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="e#4320#4330#0" expanded="true" />
             <element signature="e#4455#4470#0" expanded="true" />
@@ -1047,6 +1060,18 @@
             <element signature="e#4881#4882#0" expanded="true" />
             <element signature="e#4923#4924#0" expanded="true" />
             <element signature="e#4949#4950#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.609375">
+          <caret line="177" column="5" selection-start-line="177" selection-start-column="5" selection-end-line="177" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7988#7989#0" expanded="true" />
+            <element signature="e#8028#8029#0" expanded="true" />
           </folding>
         </state>
       </provider>
