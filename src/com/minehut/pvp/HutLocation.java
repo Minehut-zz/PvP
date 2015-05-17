@@ -32,7 +32,6 @@ public class HutLocation {
 		return new Location(this.getWorld(), this.x, this.y, this.z);
 	}
 	
-	
 	public World getWorld() {
 		return Bukkit.getWorld(this.worldID);
 	}

@@ -46,36 +46,9 @@ public class QueuePlayer {
 	}
 	
 	public int getSecondsInQueue() {
-		int out = 0;
-		Map<TimeUnit, Long> tempTimes = this.computeDiff(this.getJoinDate(), new Date());
-		for (Entry<TimeUnit, Long> set : tempTimes.entrySet()) {
-			if (set.getKey().equals(TimeUnit.SECONDS)) {
-				out += set.getValue();
-			} else
-			if (set.getKey().equals(TimeUnit.MINUTES)) {
-				out += set.getValue() * 60;
-			} else
-			if (set.getKey().equals(TimeUnit.HOURS)) {
-				out += (set.getValue() * 60) * 60;
-			}
-		}
-		return out;
+		return Core.getSecondsFromDate(this.getJoinDate());
 	}
 	
-	public Map<TimeUnit,Long> computeDiff(Date date1, Date date2) {
-    	long diffInMillies = date2.getTime() - date1.getTime();
-        List<TimeUnit> units = new ArrayList<TimeUnit>(EnumSet.allOf(TimeUnit.class));
-     	Collections.reverse(units);
-     	
-     	Map<TimeUnit,Long> result = new LinkedHashMap<TimeUnit,Long>();
-     	long milliesRest = diffInMillies;
-        for ( TimeUnit unit : units ) {
-        	long diff = unit.convert(milliesRest,TimeUnit.MILLISECONDS);
-        	long diffInMilliesForUnit = unit.toMillis(diff);
-        	milliesRest = milliesRest - diffInMilliesForUnit;
-            result.put(unit,diff);
-        }
-        return result;
-    }
+
 	
 }

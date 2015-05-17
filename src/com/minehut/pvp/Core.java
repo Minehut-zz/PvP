@@ -4,12 +4,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 import com.minehut.pvp.Listeners.BukkitListeners;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -40,6 +49,10 @@ public class Core extends JavaPlugin implements Listener {
 			System.out.println("!!API NOT FOUND!!");
 			
 		}
+		for (World world : Bukkit.getWorlds()) {
+			System.out.println(world.getUID());
+		}
+		
 		Bukkit.getPluginManager().registerEvents(this, this);
 		this.queueManager = new QueueManager(this);
 		this.arenaManager = new ArenaManager(this);
@@ -83,6 +96,39 @@ public class Core extends JavaPlugin implements Listener {
         	}
         }
         return false;
+    }
+	
+	public static int getSecondsFromDate(Date date) {
+		int out = 0;
+		Map<TimeUnit, Long> tempTimes = Core.computeDiff(date, new Date());
+		for (Entry<TimeUnit, Long> set : tempTimes.entrySet()) {
+			if (set.getKey().equals(TimeUnit.SECONDS)) {
+				out += set.getValue();
+			} else
+			if (set.getKey().equals(TimeUnit.MINUTES)) {
+				out += set.getValue() * 60;
+			} else
+			if (set.getKey().equals(TimeUnit.HOURS)) {
+				out += (set.getValue() * 60) * 60;
+			}
+		}
+		return out;
+	}
+	
+	public static Map<TimeUnit,Long> computeDiff(Date date1, Date date2) {
+    	long diffInMillies = date2.getTime() - date1.getTime();
+        List<TimeUnit> units = new ArrayList<TimeUnit>(EnumSet.allOf(TimeUnit.class));
+     	Collections.reverse(units);
+     	
+     	Map<TimeUnit,Long> result = new LinkedHashMap<TimeUnit,Long>();
+     	long milliesRest = diffInMillies;
+        for ( TimeUnit unit : units ) {
+        	long diff = unit.convert(milliesRest,TimeUnit.MILLISECONDS);
+        	long diffInMilliesForUnit = unit.toMillis(diff);
+        	milliesRest = milliesRest - diffInMilliesForUnit;
+            result.put(unit,diff);
+        }
+        return result;
     }
 
 }

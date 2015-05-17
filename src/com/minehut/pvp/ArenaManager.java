@@ -6,12 +6,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.bukkit.entity.Player;
+
 public class ArenaManager {
 
 	private Core core;
 	
 	public ArenaManager(Core core) {
 		this.core = core;
+	}
+	
+	public Arena getPlayerArena(Player player) {
+		ArrayList<Arena> arenas = this.getArenas();
+		
+		for (Arena arena : arenas) {
+			if (arena.team1.contains(player.getUniqueId())||arena.team2.contains(player.getUniqueId())) {
+				return arena;
+			}
+		}
+		
+		return null;
+	}
+	
+	public boolean isPlayerInArena(Player player) {
+		ArrayList<Arena> arenas = this.getArenas();
+		
+		for (Arena arena : arenas) {
+			if (arena.team1.contains(player.getUniqueId())||arena.team2.contains(player.getUniqueId())) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public ArrayList<Arena> getEmptyArenasOfType(ArenaType type) {

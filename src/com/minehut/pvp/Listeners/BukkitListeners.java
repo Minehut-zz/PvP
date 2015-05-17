@@ -6,7 +6,10 @@ import com.minehut.api.util.player.Rank;
 import com.minehut.commons.common.chat.C;
 import com.minehut.commons.common.level.Level;
 import com.minehut.commons.common.player.PlayerUtil;
+import com.minehut.pvp.Arena;
+import com.minehut.pvp.Arena.Team;
 import com.minehut.pvp.Core;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Fish;
@@ -36,6 +39,7 @@ public class BukkitListeners implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, core);
 
         /* Spawn. todo: load/update via database for spawn updates without needing to restart. */
+        Bukkit.getWorlds().get(0).setSpawnLocation(0, 72, 0);
         this.spawn = new Location(Bukkit.getServer().getWorlds().get(0), 0, 72, 0);
     }
 
@@ -95,8 +99,45 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         event.getPlayer().teleport(this.spawn);
+        if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
+        	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
+        }
     }
 
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
+        	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
+        }
+        if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
+        	Team team = arena.getPlayerTeam(event.getPlayer());
+        	if (team == Team.TEAM1) {
+        		arena.end(Team.TEAM2);
+        	} else
+        	if (team == Team.TEAM2) {
+        		arena.end(Team.TEAM1);
+        	}
+        }
+    }
+    
+    @EventHandler
+    public void onKick(PlayerKickEvent event) {
+        if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
+        	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
+        }
+        if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
+        	Team team = arena.getPlayerTeam(event.getPlayer());
+        	if (team == Team.TEAM1) {
+        		arena.end(Team.TEAM2);
+        	} else
+        	if (team == Team.TEAM2) {
+        		arena.end(Team.TEAM1);
+        	}
+        }
+    }
+    
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         /* Fall below spawn */
