@@ -132,6 +132,7 @@ public class BukkitListeners implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         event.getPlayer().teleport(this.spawn);
         event.getPlayer().setPlayerWeather(WeatherType.CLEAR);
+        PlayerUtil.clearAll(event.getPlayer());
         if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
