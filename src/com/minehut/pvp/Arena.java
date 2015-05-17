@@ -8,6 +8,7 @@ import java.util.UUID;
 import com.minehut.api.API;
 import com.minehut.api.util.kit.Kit;
 import com.minehut.commons.common.chat.F;
+import com.minehut.commons.common.player.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
@@ -69,6 +70,7 @@ public class Arena {
 			for (UUID uuid : this.team1) {
 				//TODO: reward player and calc ELO
 				Player player = Bukkit.getPlayer(uuid);
+				PlayerUtil.clearAll(player);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.core.eloManager.getWinnerELO(team1ELO, team2ELO));
@@ -85,6 +87,7 @@ public class Arena {
 			for (UUID uuid : this.team2) {
 				//TODO: reward player and calc ELO
 				Player player = Bukkit.getPlayer(uuid);
+				PlayerUtil.clearAll(player);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.core.eloManager.getWinnerELO(team2ELO, team1ELO));
