@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import com.minehut.api.API;
+import com.minehut.api.util.kit.Kit;
 import com.minehut.commons.common.chat.F;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -110,8 +111,9 @@ public class Arena {
 			player.teleport(this.team2Spawn.getLocation());
 			player.sendMessage("Sending you to Arena on Team 2");
 		}
-
-		core.getKit(this.type.name()).equip(core.api.getGamePlayer(player));
+		Kit kit = core.getKit(this.type.name());
+		F.log("applying kit " + kit.getName());
+		kit.equip(core.api.getGamePlayer(player));
 	}
 	
 	public Team getPlayerTeam(Player player) {
