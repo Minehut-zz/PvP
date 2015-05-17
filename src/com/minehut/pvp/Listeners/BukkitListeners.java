@@ -1,4 +1,4 @@
-package com.minehut.pvp.listeners;
+package com.minehut.pvp.Listeners;
 
 import com.minehut.api.API;
 import com.minehut.api.util.player.GamePlayer;
@@ -42,8 +42,8 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-    	
-        core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
+    	core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
+        
         Bukkit.broadcastMessage(C.red + event.getEntity().getName() + C.white + " has lost!");
 
         /* todo: database stat updates (kills/deaths). */
@@ -117,6 +117,7 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
+    	
         event.setRespawnLocation(this.getSpawn());
         event.getPlayer().setBedSpawnLocation(this.getSpawn());
         PlayerUtil.clearAll(event.getPlayer());
@@ -186,8 +187,8 @@ public class BukkitListeners implements Listener {
             event.setTo(this.getSpawn());
         }
         if (!this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
-        	event.getPlayer().setHealth(20D);
-        	event.getPlayer().setFoodLevel(20);
+        	//event.getPlayer().setHealth(20D);
+        	//event.getPlayer().setFoodLevel(20);
         }
     }
 
