@@ -16,11 +16,12 @@ import java.util.concurrent.TimeUnit;
 
 import com.minehut.api.util.kit.Kit;
 import com.minehut.pvp.Listeners.BukkitListeners;
-
 import com.minehut.pvp.commands.CreateArenaCommand;
+import com.minehut.pvp.commands.JoinCommand;
 import com.minehut.pvp.kits.KitBoth;
 import com.minehut.pvp.kits.KitMelee;
 import com.minehut.pvp.kits.KitRanged;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -70,7 +71,8 @@ public class Core extends JavaPlugin implements Listener {
 
 		/* Commands */
 		new CreateArenaCommand(this);
-
+		new JoinCommand(this);
+		
 		/* Kits */
 		this.kits = new ArrayList<>();
 		this.kits.add(new KitMelee(this));
@@ -93,7 +95,7 @@ public class Core extends JavaPlugin implements Listener {
         				Player player = (Player)sender;
         				for (Arena arena : this.arenaManager.getArenas()) {
         					Bukkit.broadcastMessage(arena.id + ":" +arena.name + " | active:" + arena.active);
-        					Bukkit.broadcastMessage("�cYou are " + ((this.queueManager.isPlayerInQueue(player.getUniqueId())?"":"not ") + "in queue."));
+        					Bukkit.broadcastMessage("You are " + ((this.queueManager.isPlayerInQueue(player.getUniqueId())?"":"not ") + "in queue."));
         					if (this.queueManager.isPlayerInQueue(player.getUniqueId())) {
         						Date date = this.queueManager.getJoinDate(player.getUniqueId());
         						Bukkit.broadcastMessage("You joined the queue at " + date);
@@ -105,9 +107,9 @@ public class Core extends JavaPlugin implements Listener {
         					Player player = (Player)sender;
         					if (!this.queueManager.isPlayerInQueue(player.getUniqueId())) {
         						this.queueManager.joinQueue(player.getUniqueId());
-        						player.sendMessage("�cYou have joined the queue!");
+        						player.sendMessage("You have joined the queue!");
         					} else {
-        						player.sendMessage("�cYou are already in the queue!");
+        						player.sendMessage("You are already in the queue!");
         					}
         				}
         			}

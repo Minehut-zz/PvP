@@ -9,6 +9,7 @@ import com.minehut.api.API;
 import com.minehut.api.util.kit.Kit;
 import com.minehut.commons.common.chat.F;
 import com.minehut.commons.common.player.PlayerUtil;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
@@ -56,7 +57,7 @@ public class Arena {
 			for (UUID uuid : team2) {
 				elo += this.core.eloManager.getELO(Bukkit.getPlayer(uuid));
 			}
-			elo = (elo / team1.size());
+			elo = (elo / team2.size());
 		}
 		
 		return elo;
