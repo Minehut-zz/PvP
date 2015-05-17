@@ -4,6 +4,7 @@ import com.minehut.api.API;
 import com.minehut.api.util.player.GamePlayer;
 import com.minehut.api.util.player.Rank;
 import com.minehut.commons.common.chat.C;
+import com.minehut.commons.common.chat.F;
 import com.minehut.commons.common.level.Level;
 import com.minehut.commons.common.player.PlayerUtil;
 import com.minehut.pvp.arena.Arena.Team;
@@ -42,9 +43,13 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-    	
-        core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
+    	Team winningTeam = core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity());
+        F.debug("winning team: " + winningTeam.name());
+        core.getArenaManager().getPlayerArena(event.getEntity()).end(winningTeam);
         Bukkit.broadcastMessage(C.red + event.getEntity().getName() + C.white + " has lost!");
+
+        /* Clear Item Drops */
+        event.getDrops().clear();
 
         /* todo: database stat updates (kills/deaths). */
     }
@@ -73,6 +78,7 @@ public class BukkitListeners implements Listener {
             if (projectile.getShooter() instanceof LivingEntity) {
                 damagerEntity = (LivingEntity) projectile.getShooter();
             }
+            projectile.remove(); //Stop arrows from sticking in players/ground.
         }
 
         /* Check if hurt player is in arena */
@@ -118,8 +124,9 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         event.setRespawnLocation(this.getSpawn());
-        event.getPlayer().setBedSpawnLocation(this.getSpawn());
-        PlayerUtil.clearAll(event.getPlayer());
+//        event.getPlayer().setBedSpawnLocation(this.getSpawn());
+//        PlayerUtil.clearAll(event.getPlayer());
+//        event.getPlayer().teleport(this.getSpawn());
     }
 
     @EventHandler

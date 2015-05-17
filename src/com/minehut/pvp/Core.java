@@ -79,6 +79,11 @@ public class Core extends JavaPlugin implements Listener {
 		this.kits.add(new KitBoth(this));
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
+
+		for (Arena arena : this.arenaManager.getArenas()) {
+			arena.setActive(false);
+			arena.updateArena();
+		}
 		
 	//	Arena testArena = new Arena();
 	//	System.out.println(gson.toJson(testArena));
