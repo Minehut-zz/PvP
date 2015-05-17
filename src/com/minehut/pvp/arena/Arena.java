@@ -73,6 +73,7 @@ public class Arena {
 				Player player = Bukkit.getPlayer(uuid);
 				PlayerUtil.clearAll(player);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
+				player.getInventory().addItem(this.core.getGuiMenus().getQueueItem());
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.core.eloManager.getWinnerELO(team1ELO, team2ELO));
 			}
@@ -90,6 +91,7 @@ public class Arena {
 				Player player = Bukkit.getPlayer(uuid);
 				PlayerUtil.clearAll(player);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
+				player.getInventory().addItem(this.core.getGuiMenus().getQueueItem());
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.core.eloManager.getWinnerELO(team2ELO, team1ELO));
 			}

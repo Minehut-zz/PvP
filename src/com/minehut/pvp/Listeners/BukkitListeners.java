@@ -125,21 +125,21 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         event.setRespawnLocation(this.getSpawn());
+        this.spawnEquipPlayer(event.getPlayer());
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         event.getPlayer().teleport(this.getSpawn());
-        event.getPlayer().setPlayerWeather(WeatherType.CLEAR);
-        PlayerUtil.clearAll(event.getPlayer());
+
         if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
-        	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
+            this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
         if (!this.core.eloManager.hasELO(event.getPlayer())) {
-        	this.core.eloManager.createELO(event.getPlayer());
+            this.core.eloManager.createELO(event.getPlayer());
         }
 
-        event.getPlayer().getInventory().addItem(this.core.getGuiMenus().getQueueItem());
+        this.spawnEquipPlayer(event.getPlayer());
     }
 
     @EventHandler
@@ -264,5 +264,11 @@ public class BukkitListeners implements Listener {
         if (!this.core.arenaManager.isPlayerInArena((Player) event.getEntity())) {
             event.setFoodLevel(20);
         }
+    }
+
+    public void spawnEquipPlayer(Player player) {
+        player.setPlayerWeather(WeatherType.CLEAR);
+        PlayerUtil.clearAll(player);
+        player.getInventory().addItem(this.core.getGuiMenus().getQueueItem());
     }
 }
