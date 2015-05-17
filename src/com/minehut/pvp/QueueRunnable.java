@@ -33,7 +33,9 @@ public class QueueRunnable extends BukkitRunnable {
 					for (Arena arena : tempArenas ) {
 						System.out.println("Starting Arena " + arena.name + "!");
 						arena.active = true;
-						
+						if (tempPlayers.size()<=1) {
+							continue;
+						}
 						boolean safeArena = true;
 						
 						for (int i = 0; i < teamSize; i++) {

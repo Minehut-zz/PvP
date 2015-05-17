@@ -36,7 +36,7 @@ public class CreateArenaCommand extends Command {
         /* New */
         if (args.get(0).equalsIgnoreCase("new")) {
             /* Parameters check */
-            if (args.size() != 10) {
+            if (args.size() != 3) {
                 player.sendMessage(C.red + "/arena new (name) (type)");
                 return false;
             }

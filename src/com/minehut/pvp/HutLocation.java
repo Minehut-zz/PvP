@@ -12,20 +12,22 @@ public class HutLocation {
 	
 	private UUID worldID = UUID.randomUUID();
 	
-	private double x = 0, y = 0, z = 0;
+	private double x = 0, y = 0, z = 0, yaw = 0;
 	
 	public HutLocation(Location location) {
 		this.worldID = location.getWorld().getUID();
 		this.x = location.getX();
 		this.y = location.getY();
 		this.z = location.getZ();
+		this.yaw = location.getYaw();
 	}
 	
-	public HutLocation(UUID worldID, double x, double y, double z) {
+	public HutLocation(UUID worldID, double x, double y, double z, double yaw) {
 		this.worldID = worldID;
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.yaw = yaw;
 	}
 	
 	public Location getLocation() {

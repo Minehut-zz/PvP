@@ -12,6 +12,7 @@ import com.minehut.pvp.Core;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.WeatherType;
 import org.bukkit.entity.Fish;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -26,12 +27,14 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.event.weather.WeatherChangeEvent;
 
 /**
  * Created by luke on 5/16/15.
  */
 public class BukkitListeners implements Listener {
     private Core core;
+    public Location spawn;
 
     public BukkitListeners(Core core) {
         this.core = core;
@@ -39,11 +42,12 @@ public class BukkitListeners implements Listener {
 
         /* Spawn. todo: load/update via database for spawn updates without needing to restart. */
         Bukkit.getWorlds().get(0).setSpawnLocation(0, 72, 0);
+        this.spawn = new Location(Bukkit.getServer().getWorlds().get(0), 0, 72, 0);
     }
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-
+    	
         core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
         Bukkit.broadcastMessage(C.red + event.getEntity().getName() + C.white + " has lost!");
 
@@ -118,13 +122,14 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        event.setRespawnLocation(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
+        event.setRespawnLocation(this.spawn);
         PlayerUtil.clearAll(event.getPlayer());
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
+        event.getPlayer().teleport(this.spawn);
+        event.getPlayer().setPlayerWeather(WeatherType.CLEAR);
         if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
@@ -181,11 +186,21 @@ public class BukkitListeners implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         /* Fall below spawn */
         if (event.getPlayer().getLocation().getY() <= 20) {
-            event.setTo(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
+            event.setTo(this.spawn);
+        }
+        if (!this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+        	event.getPlayer().setHealth(20D);
+        	event.getPlayer().setFoodLevel(20);
         }
     }
 
-
+	@EventHandler
+	public void weatherChange(WeatherChangeEvent event) {
+		if (event.getWorld().getName().equals(Bukkit.getWorlds().get(0).getName())) {
+			event.setCancelled(true);
+		}
+	}
+	
 
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
