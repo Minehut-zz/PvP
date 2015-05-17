@@ -20,15 +20,15 @@ public class QueueRunnable extends BukkitRunnable {
 	@Override
 	public void run() {
 		for (ArenaType type : ArenaType.values()) {
-			System.out.println("Checking for open arenas with the type: " + type.toString());
+//			System.out.println("Checking for open arenas with the type: " + type.toString());
 			ArrayList<Arena> tempArenas = this.core.arenaManager.getEmptyArenasOfType(type); //Less sql calls
 			if (tempArenas.size()>=1) {
 				ArrayList<QueuePlayer> tempPlayers = this.core.queueManager.getPlayersInQueue(type);
 				if (tempPlayers.size()>=2) {
-					System.out.println("Found players in " + type.toString() + " queue.");
+//					System.out.println("Found players in " + type.toString() + " queue.");
 					int pos = 1;
 					for (QueuePlayer qPlayer : tempPlayers) {
-						System.out.println(qPlayer.getPlayer().getName() + " has been in the queue for " + qPlayer.getSecondsInQueue() + " seconds, they are in position " + pos + ".");
+//						System.out.println(qPlayer.getPlayer().getName() + " has been in the queue for " + qPlayer.getSecondsInQueue() + " seconds, they are in position " + pos + ".");
 						
 						pos++;
 					}
@@ -41,7 +41,7 @@ public class QueueRunnable extends BukkitRunnable {
 						boolean safeArena = true;
 						
 						for (int i = 0; i < teamSize; i++) {
-							System.out.println("Adding player " + tempPlayers.get(0).getPlayer().getName() + " to team 1");
+//							System.out.println("Adding player " + tempPlayers.get(0).getPlayer().getName() + " to team 1");
 							
 							if (tempPlayers.get(0).getPlayer().isOnline()) {
 								arena.team1.add(tempPlayers.get(0).uuid);
@@ -60,7 +60,7 @@ public class QueueRunnable extends BukkitRunnable {
 							
 						}
 						for (int i = 0; i < teamSize; i++) {
-							System.out.println("Adding player " + tempPlayers.get(0).getPlayer().getName() + " to team 2");
+//							System.out.println("Adding player " + tempPlayers.get(0).getPlayer().getName() + " to team 2");
 							
 							if (tempPlayers.get(0).getPlayer().isOnline()) {
 								arena.team2.add(tempPlayers.get(0).uuid);
@@ -91,7 +91,7 @@ public class QueueRunnable extends BukkitRunnable {
 						
 					}
 				} else {
-					System.out.println("Not enough players in " + type.toString() + " queue.");
+//					System.out.println("Not enough players in " + type.toString() + " queue.");
 				}
 			}
 		}

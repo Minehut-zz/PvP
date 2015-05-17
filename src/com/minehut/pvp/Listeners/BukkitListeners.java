@@ -23,6 +23,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.*;
@@ -43,10 +44,7 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-    	Team winningTeam = core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity());
-        F.debug("winning team: " + winningTeam.name());
-        core.getArenaManager().getPlayerArena(event.getEntity()).end(winningTeam);
-        Bukkit.broadcastMessage(C.red + event.getEntity().getName() + C.white + " has lost!");
+    	core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
 
         /* Clear Item Drops */
         event.getDrops().clear();
@@ -84,12 +82,14 @@ public class BukkitListeners implements Listener {
         /* Check if hurt player is in arena */
         if (!core.getArenaManager().isPlayerInArena(hurtPlayer)) {
             event.setCancelled(true);
+            return;
         }
 
         /* Check if damager player is in arena with hurt player */
         if (damagerEntity instanceof Player) { //Allow mobs to damage player
             if (!core.getArenaManager().isPlayerInArena((Player) damagerEntity)) {
                 event.setCancelled(true); // Spectator
+                return;
             }
         }
 
@@ -102,6 +102,7 @@ public class BukkitListeners implements Listener {
 
             if (damagerTeam == hurtTeam) {
                 event.setCancelled(true); //Friendly fire
+                return;
             }
         }
     }
@@ -124,9 +125,6 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         event.setRespawnLocation(this.getSpawn());
-//        event.getPlayer().setBedSpawnLocation(this.getSpawn());
-//        PlayerUtil.clearAll(event.getPlayer());
-//        event.getPlayer().teleport(this.getSpawn());
     }
 
     @EventHandler
@@ -193,8 +191,8 @@ public class BukkitListeners implements Listener {
             event.setTo(this.getSpawn());
         }
         if (!this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
-        	event.getPlayer().setHealth(20D);
-        	event.getPlayer().setFoodLevel(20);
+        	//event.getPlayer().setHealth(20D);
+        	//event.getPlayer().setFoodLevel(20);
         }
     }
 
@@ -256,5 +254,13 @@ public class BukkitListeners implements Listener {
 
     Location getSpawn() {
         return Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
+    }
+
+    @EventHandler
+    public void onHungerChange(FoodLevelChangeEvent event) {
+        /* Only full hunger to those not in combat */
+        if (!this.core.arenaManager.isPlayerInArena((Player) event.getEntity())) {
+            event.setFoodLevel(20);
+        }
     }
 }

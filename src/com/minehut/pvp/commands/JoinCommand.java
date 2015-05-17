@@ -29,7 +29,7 @@ public class JoinCommand extends Command {
         }
         if (args.size() == 1) {
         	String type = args.get(0);
-        	if (ArenaType.valueOf(type)!=null) {
+        	if (ArenaType.getArenaType(type) != null) {
         		if (!this.core.queueManager.isPlayerInQueue(player.getUniqueId())) {
         			this.core.queueManager.joinQueue(player.getUniqueId(), type);
             		player.sendMessage(C.green + "Joining the " + C.aqua + type + C.green + " queue.");
