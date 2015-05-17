@@ -39,23 +39,56 @@ public class Arena {
 		this.core = core;
 	}
 	
+	public int getTeamELO(Team team) {
+		int elo = 0;
+		if (team == Team.TEAM1) {
+			for (UUID uuid : team1) {
+				elo += this.core.eloManager.getELO(Bukkit.getPlayer(uuid));
+			}
+			elo = (elo / team1.size());
+		} else
+		if (team == Team.TEAM2) {
+			for (UUID uuid : team2) {
+				elo += this.core.eloManager.getELO(Bukkit.getPlayer(uuid));
+			}
+			elo = (elo / team1.size());
+		}
+		
+		return elo;
+	}
 	
 	public void end(Team winningTeam) {
 		this.active = false;
 		if (winningTeam == Team.TEAM1) {
+			int team1ELO = this.getTeamELO(Team.TEAM1);
+			int team2ELO = this.getTeamELO(Team.TEAM2);
 			for (UUID uuid : this.team1) {
 				//TODO: reward player and calc ELO
 				Player player = Bukkit.getPlayer(uuid);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
+				this.core.eloManager.setELO(player, this.core.eloManager.getWinnerELO(team1ELO, team2ELO));
+			}
+			for (UUID uuid : this.team2) {
+				Player player = Bukkit.getPlayer(uuid);
+				player.sendMessage("You lost! Thank you for playing.");
+				this.core.eloManager.setELO(player, this.core.eloManager.getLoserELO(team1ELO, team2ELO));
 			}
 		} else
 		if (winningTeam == Team.TEAM2) {
-			for (UUID uuid : this.team1) {
+			int team1ELO = this.getTeamELO(Team.TEAM1);
+			int team2ELO = this.getTeamELO(Team.TEAM2);
+			for (UUID uuid : this.team2) {
 				//TODO: reward player and calc ELO
 				Player player = Bukkit.getPlayer(uuid);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
+				this.core.eloManager.setELO(player, this.core.eloManager.getWinnerELO(team2ELO, team1ELO));
+			}
+			for (UUID uuid : this.team1) {
+				Player player = Bukkit.getPlayer(uuid);
+				player.sendMessage("You lost! Thank you for playing.");
+				this.core.eloManager.setELO(player, this.core.eloManager.getLoserELO(team2ELO, team1ELO));
 			}
 		}
 		this.team1.clear();

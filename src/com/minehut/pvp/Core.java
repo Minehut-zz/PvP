@@ -38,6 +38,8 @@ public class Core extends JavaPlugin implements Listener {
 	
 	public ArenaManager arenaManager;
 
+	public ELOManager eloManager;
+	
 	public BukkitListeners bukkitListeners;
 	
 	@Override
@@ -57,6 +59,7 @@ public class Core extends JavaPlugin implements Listener {
 		this.queueManager = new QueueManager(this);
 		this.arenaManager = new ArenaManager(this);
 		this.bukkitListeners = new BukkitListeners(this);
+		this.eloManager = new ELOManager(this);
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 		

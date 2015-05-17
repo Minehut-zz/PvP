@@ -130,6 +130,9 @@ public class BukkitListeners implements Listener {
         if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
+        if (!this.core.eloManager.hasELO(event.getPlayer())) {
+        	this.core.eloManager.createELO(event.getPlayer());
+        }
     }
 
     @EventHandler
@@ -226,9 +229,11 @@ public class BukkitListeners implements Listener {
         int level = gamePlayer.getLevel();
 
         if (rank == Rank.regular) {
-            event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " + rank.getTag() + player.getDisplayName() + C.gray + ": " + C.gray + "%2$s");
+            event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " + 
+        rank.getTag() + player.getDisplayName() + C.white + "(" + this.core.eloManager.getELO(player) +")" + C.gray + ": " + C.gray + "%2$s");
         } else {
-            event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " + rank.getTag() + player.getDisplayName() + C.white + ": " + C.white + "%2$s");
+            event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " + rank.getTag() + 
+            		player.getDisplayName()  + C.white + "(" + this.core.eloManager.getELO(player) +")" + C.white + ": " + C.white + "%2$s");
         }
     }
 }
