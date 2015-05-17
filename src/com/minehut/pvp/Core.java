@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import com.minehut.api.util.kit.Kit;
+import com.minehut.pvp.gui.GUIMenus;
 import com.minehut.pvp.listeners.BukkitListeners;
 import com.minehut.pvp.arena.Arena;
 import com.minehut.pvp.arena.ArenaManager;
@@ -46,6 +47,7 @@ public class Core extends JavaPlugin implements Listener {
 	public ELOManager eloManager;
 	
 	public BukkitListeners bukkitListeners;
+	public GUIMenus guiMenus;
 
 	public ArrayList<Kit> kits;
 	
@@ -67,6 +69,7 @@ public class Core extends JavaPlugin implements Listener {
 		this.arenaManager = new ArenaManager(this);
 		this.bukkitListeners = new BukkitListeners(this);
 		this.eloManager = new ELOManager(this);
+		this.guiMenus = new GUIMenus(this);
 
 		/* Commands */
 		new CreateArenaCommand(this);
@@ -171,5 +174,9 @@ public class Core extends JavaPlugin implements Listener {
 			}
 		}
 		return null;
+	}
+
+	public GUIMenus getGuiMenus() {
+		return guiMenus;
 	}
 }

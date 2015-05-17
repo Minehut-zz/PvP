@@ -5,8 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.UUID;
 
 import com.minehut.pvp.Core;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class ArenaManager {
@@ -79,6 +81,23 @@ public class ArenaManager {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public ArrayList<Player> getPlayersInArena(ArenaType arenaType) {
+		ArrayList<Player> players = new ArrayList<>();
+
+		for (Arena arena : this.getArenas()) {
+			if (arena.isActive()) {
+				for (UUID uuid : arena.getTeam1()) {
+					players.add(Bukkit.getServer().getPlayer(uuid));
+				}
+				for (UUID uuid : arena.getTeam2()) {
+					players.add(Bukkit.getServer().getPlayer(uuid));
+				}
+			}
+		}
+
+		return players;
 	}
 
 	public Arena getArena(String name) {

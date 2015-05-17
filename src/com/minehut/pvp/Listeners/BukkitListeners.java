@@ -138,6 +138,8 @@ public class BukkitListeners implements Listener {
         if (!this.core.eloManager.hasELO(event.getPlayer())) {
         	this.core.eloManager.createELO(event.getPlayer());
         }
+
+        event.getPlayer().getInventory().addItem(this.core.getGuiMenus().getQueueItem());
     }
 
     @EventHandler

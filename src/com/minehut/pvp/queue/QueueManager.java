@@ -76,6 +76,18 @@ public class QueueManager {
 			e.printStackTrace();
 		}
 	}
+
+	public void joinQueue(UUID uuid, ArenaType type) {
+		try {
+			PreparedStatement statement = this.core.api.getStatManager().getMySQL().getConnection().prepareStatement(
+					"INSERT INTO `queue` (`id`, `uuid`, `join_time`, `type`)" +
+							" VALUES (NULL, '" + uuid.toString() + "', '" + System.currentTimeMillis() + "', '" + type.getType() + "')");
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void joinQueue(UUID uuid) {
 		this.joinQueue(uuid, "melee");

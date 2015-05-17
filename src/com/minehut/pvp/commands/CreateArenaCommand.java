@@ -26,7 +26,7 @@ public class CreateArenaCommand extends Command {
     public boolean call(Player player, ArrayList<String> args) {
 
         if (args == null || args.size() == 0) {
-            player.sendMessage(C.red + "/arena new (name) (type)");
+            player.sendMessage(C.red + "/arena new (type) (type)");
             return false;
         }
 
@@ -34,7 +34,7 @@ public class CreateArenaCommand extends Command {
         if (args.get(0).equalsIgnoreCase("new")) {
             /* Parameters check */
             if (args.size() != 3) {
-                player.sendMessage(C.red + "/arena new (name) (type)");
+                player.sendMessage(C.red + "/arena new (type) (type)");
                 return false;
             }
 
@@ -54,7 +54,7 @@ public class CreateArenaCommand extends Command {
         if (args.get(0).equalsIgnoreCase("edit")) {
             /* Parameters check */
             if (args.size() != 5) {
-                player.sendRawMessage(C.red + "/arena edit (name) (loc) (1)");
+                player.sendRawMessage(C.red + "/arena edit (type) (loc) (1)");
                 return false;
             }
 
