@@ -14,9 +14,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import com.minehut.api.util.kit.Kit;
 import com.minehut.pvp.Listeners.BukkitListeners;
 
 import com.minehut.pvp.commands.CreateArenaCommand;
+import com.minehut.pvp.kits.KitBoth;
+import com.minehut.pvp.kits.KitMelee;
+import com.minehut.pvp.kits.KitRanged;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -42,6 +46,8 @@ public class Core extends JavaPlugin implements Listener {
 	public ELOManager eloManager;
 	
 	public BukkitListeners bukkitListeners;
+
+	public ArrayList<Kit> kits;
 	
 	@Override
 	public void onEnable() {
@@ -64,6 +70,12 @@ public class Core extends JavaPlugin implements Listener {
 
 		/* Commands */
 		new CreateArenaCommand(this);
+
+		/* Kits */
+		this.kits = new ArrayList<>();
+		this.kits.add(new KitMelee(this));
+		this.kits.add(new KitRanged(this));
+		this.kits.add(new KitBoth(this));
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 		
@@ -144,5 +156,14 @@ public class Core extends JavaPlugin implements Listener {
 
 	public ArenaManager getArenaManager() {
 		return arenaManager;
+	}
+
+	public Kit getKit(String name) {
+		for (Kit kit : this.kits) {
+			if (kit.getName().equalsIgnoreCase(name)) {
+				return kit;
+			}
+		}
+		return null;
 	}
 }
