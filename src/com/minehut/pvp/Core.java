@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.minehut.pvp.Listeners.BukkitListeners;
 
+import com.minehut.pvp.commands.CreateArenaCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -60,6 +61,9 @@ public class Core extends JavaPlugin implements Listener {
 		this.arenaManager = new ArenaManager(this);
 		this.bukkitListeners = new BukkitListeners(this);
 		this.eloManager = new ELOManager(this);
+
+		/* Commands */
+		new CreateArenaCommand(this);
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 		

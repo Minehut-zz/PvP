@@ -79,4 +79,13 @@ public class ArenaManager {
 			return null;
 		}
 	}
+
+	public Arena getArena(String name) {
+		for (Arena arena : this.getArenas()) {
+			if (arena.name.equalsIgnoreCase(name)) {
+				return arena;
+			}
+		}
+		return null;
+	}
 }

@@ -1,6 +1,6 @@
 package com.minehut.pvp;
 
-enum ArenaType {
+public enum ArenaType {
 
 	ranged("ranged"), melee("melee"), both("both");
 	

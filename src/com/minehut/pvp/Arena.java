@@ -1,5 +1,7 @@
 package com.minehut.pvp;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -159,6 +161,18 @@ public class Arena {
 	public void updateArena() {
 		//this.core.api.getStatManager().getMySQL().setData("id", String.format("%d", this.id), "arena_json", arena, "arenas");
 		this.core.api.getStatManager().getMySQL().setData("id", String.format("%d", this.id), "arena_json", new Gson().toJson(this), "arenas");
+	}
+
+	public void createArena() {
+		try {
+			PreparedStatement statement = this.core.api.getStatManager().getMySQL().getConnection().prepareStatement(
+					"INSERT INTO `arenas` (`id`, `arena_json`)" +
+							" VALUES (NULL, '" + new Gson().toJson(this) + "')");
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
