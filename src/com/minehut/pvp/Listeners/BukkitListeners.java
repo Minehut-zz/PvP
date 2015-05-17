@@ -44,14 +44,23 @@ public class BukkitListeners implements Listener {
     }
 
     @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+
+        core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
+        Bukkit.broadcastMessage(C.red + event.getEntity().getName() + C.white + " has lost!");
+
+        /* todo: database stat updates (kills/deaths). */
+    }
+
+    @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
 
-        // Make sure its a living mob
-        if (!(event.getEntity() instanceof LivingEntity)) {
+        // Make sure its a player
+        if (!(event.getEntity() instanceof Player)) {
             return;
         }
 
-        LivingEntity hurtEntity = (LivingEntity) event.getEntity();
+        Player hurtPlayer = (Player) event.getEntity();
         Projectile projectile = getProjectile(event);
         LivingEntity damagerEntity = null;
 
@@ -70,9 +79,28 @@ public class BukkitListeners implements Listener {
         }
 
         /* Check if hurt player is in arena */
+        if (!core.getArenaManager().isPlayerInArena(hurtPlayer)) {
+            event.setCancelled(true);
+        }
 
         /* Check if damager player is in arena with hurt player */
+        if (damagerEntity instanceof Player) { //Allow mobs to damage player
+            if (!core.getArenaManager().isPlayerInArena((Player) damagerEntity)) {
+                event.setCancelled(true); // Spectator
+            }
+        }
 
+        /* Friendly fire */
+        if (damagerEntity instanceof Player) {
+            Player damagerPlayer = (Player) damagerEntity;
+
+            Team damagerTeam = core.getArenaManager().getPlayerArena(damagerPlayer).getPlayerTeam(damagerPlayer);
+            Team hurtTeam = core.getArenaManager().getPlayerArena(hurtPlayer).getPlayerTeam(hurtPlayer);
+
+            if (damagerTeam == hurtTeam) {
+                event.setCancelled(true); //Friendly fire
+            }
+        }
     }
 
     Projectile getProjectile(EntityDamageEvent event) {
@@ -110,15 +138,21 @@ public class BukkitListeners implements Listener {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
         if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
-        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
-        	Team team = arena.getPlayerTeam(event.getPlayer());
-        	if (team == Team.TEAM1) {
-        		arena.end(Team.TEAM2);
-        	} else
-        	if (team == Team.TEAM2) {
-        		arena.end(Team.TEAM1);
-        	}
+
+            core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
+            Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
+
+//        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
+//        	Team team = arena.getPlayerTeam(event.getPlayer());
+//        	if (team == Team.TEAM1) {
+//        		arena.end(Team.TEAM2);
+//        	} else
+//        	if (team == Team.TEAM2) {
+//        		arena.end(Team.TEAM1);
+//        	}
         }
+
+
     }
     
     @EventHandler
@@ -127,14 +161,18 @@ public class BukkitListeners implements Listener {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
         if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
-        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
-        	Team team = arena.getPlayerTeam(event.getPlayer());
-        	if (team == Team.TEAM1) {
-        		arena.end(Team.TEAM2);
-        	} else
-        	if (team == Team.TEAM2) {
-        		arena.end(Team.TEAM1);
-        	}
+
+            core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
+            Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
+
+//        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
+//        	Team team = arena.getPlayerTeam(event.getPlayer());
+//        	if (team == Team.TEAM1) {
+//        		arena.end(Team.TEAM2);
+//        	} else
+//        	if (team == Team.TEAM2) {
+//        		arena.end(Team.TEAM1);
+//        	}
         }
     }
     
@@ -144,11 +182,6 @@ public class BukkitListeners implements Listener {
         if (event.getPlayer().getLocation().getY() <= 20) {
             event.setTo(this.spawn);
         }
-    }
-
-    @EventHandler
-    public void onDeath(PlayerDeathEvent event) {
-        /* todo: database stat updates (kills/deaths). */
     }
 
 

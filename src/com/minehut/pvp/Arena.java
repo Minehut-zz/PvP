@@ -3,6 +3,7 @@ package com.minehut.pvp;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.minehut.commons.common.chat.F;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
@@ -85,6 +86,19 @@ public class Arena {
 			return Team.TEAM2;
 		} else {
 			return Team.SPEC_OR_UNKNOWN;
+		}
+	}
+
+	public Team getEnemyTeam(Player player) {
+		Team playerTeam = getPlayerTeam(player);
+
+		if (playerTeam == Team.TEAM1) {
+			return Team.TEAM2;
+		} else if (playerTeam == Team.TEAM2) {
+			return Team.TEAM1;
+		} else {
+			F.log("tried to find opposite of spectator or null team.");
+			return null; //spectator call
 		}
 	}
 	

@@ -131,4 +131,11 @@ public class Core extends JavaPlugin implements Listener {
         return result;
     }
 
+	public QueueManager getQueueManager() {
+		return queueManager;
+	}
+
+	public ArenaManager getArenaManager() {
+		return arenaManager;
+	}
 }
