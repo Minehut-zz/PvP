@@ -1,4 +1,4 @@
-package com.minehut.pvp;
+package com.minehut.pvp.queue;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 
-import com.google.gson.Gson;
+import com.minehut.pvp.Core;
+import com.minehut.pvp.arena.ArenaType;
 
 public class QueueManager {
 

@@ -3,14 +3,9 @@ package com.minehut.pvp.commands;
 import com.minehut.api.managers.command.Command;
 import com.minehut.api.util.player.Rank;
 import com.minehut.commons.common.chat.C;
-import com.minehut.pvp.Arena;
-import com.minehut.pvp.ArenaType;
+import com.minehut.pvp.arena.ArenaType;
 import com.minehut.pvp.Core;
-import com.minehut.pvp.HutLocation;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 

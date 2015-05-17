@@ -1,8 +1,10 @@
-package com.minehut.pvp;
+package com.minehut.pvp.queue;
 
 import java.util.ArrayList;
-import java.util.Date;
 
+import com.minehut.pvp.Core;
+import com.minehut.pvp.arena.Arena;
+import com.minehut.pvp.arena.ArenaType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class QueueRunnable extends BukkitRunnable {
@@ -32,7 +34,7 @@ public class QueueRunnable extends BukkitRunnable {
 					}
 					for (Arena arena : tempArenas ) {
 						System.out.println("Starting Arena " + arena.name + "!");
-						arena.active = true;
+						arena.setActive(true);
 						if (tempPlayers.size()<=1) {
 							continue;
 						}

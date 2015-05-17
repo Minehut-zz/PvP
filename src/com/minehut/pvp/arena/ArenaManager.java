@@ -1,4 +1,4 @@
-package com.minehut.pvp;
+package com.minehut.pvp.arena;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.minehut.pvp.Core;
 import org.bukkit.entity.Player;
 
 public class ArenaManager {

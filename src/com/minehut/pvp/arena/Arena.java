@@ -1,17 +1,17 @@
-package com.minehut.pvp;
+package com.minehut.pvp.arena;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import com.minehut.api.API;
 import com.minehut.api.util.kit.Kit;
 import com.minehut.commons.common.chat.F;
 import com.minehut.commons.common.player.PlayerUtil;
 
+import com.minehut.pvp.Core;
+import com.minehut.pvp.HutLocation;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -183,5 +183,132 @@ public class Arena {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public UUID getArenaUUID() {
+		return arenaUUID;
+	}
+
+	public HutLocation getTeam1Spawn() {
+		return team1Spawn;
+	}
+
+	public HutLocation getTeam2Spawn() {
+		return team2Spawn;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public boolean isPlaying() {
+		return playing;
+	}
+
+	public long getStart() {
+		return start;
+	}
+
+	public ArrayList<UUID> getTeam1() {
+		return team1;
+	}
+
+	public ArrayList<UUID> getTeam2() {
+		return team2;
+	}
+
+	public ArenaType getType() {
+		return type;
+	}
+
+	public int getMaxWait() {
+		return maxWait;
+	}
+
+	public int getStartDelay() {
+		return startDelay;
+	}
+
+	public Core getCore() {
+		return core;
+	}
+
+	public ArrayList<UUID> getTeam1Deaths() {
+		return team1Deaths;
+	}
+
+	public ArrayList<UUID> getTeam2Deaths() {
+		return team2Deaths;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setArenaUUID(UUID arenaUUID) {
+		this.arenaUUID = arenaUUID;
+	}
+
+	public void setTeam1Spawn(HutLocation team1Spawn) {
+		this.team1Spawn = team1Spawn;
+	}
+
+	public void setTeam2Spawn(HutLocation team2Spawn) {
+		this.team2Spawn = team2Spawn;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setPlaying(boolean playing) {
+		this.playing = playing;
+	}
+
+	public void setStart(long start) {
+		this.start = start;
+	}
+
+	public void setTeam1(ArrayList<UUID> team1) {
+		this.team1 = team1;
+	}
+
+	public void setTeam2(ArrayList<UUID> team2) {
+		this.team2 = team2;
+	}
+
+	public void setType(ArenaType type) {
+		this.type = type;
+	}
+
+	public void setMaxWait(int maxWait) {
+		this.maxWait = maxWait;
+	}
+
+	public void setStartDelay(int startDelay) {
+		this.startDelay = startDelay;
+	}
+
+	public void setCore(Core core) {
+		this.core = core;
+	}
+
+	public void setTeam1Deaths(ArrayList<UUID> team1Deaths) {
+		this.team1Deaths = team1Deaths;
+	}
+
+	public void setTeam2Deaths(ArrayList<UUID> team2Deaths) {
+		this.team2Deaths = team2Deaths;
+	}
 }

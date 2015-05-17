@@ -1,13 +1,9 @@
 package com.minehut.pvp;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,15 +11,18 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import com.minehut.api.util.kit.Kit;
-import com.minehut.pvp.Listeners.BukkitListeners;
+import com.minehut.pvp.arena.Arena;
+import com.minehut.pvp.arena.ArenaManager;
+import com.minehut.pvp.listeners.BukkitListeners;
 import com.minehut.pvp.commands.CreateArenaCommand;
 import com.minehut.pvp.commands.JoinCommand;
 import com.minehut.pvp.kits.KitBoth;
 import com.minehut.pvp.kits.KitMelee;
 import com.minehut.pvp.kits.KitRanged;
 
+import com.minehut.pvp.queue.QueueManager;
+import com.minehut.pvp.queue.QueueRunnable;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -94,7 +93,7 @@ public class Core extends JavaPlugin implements Listener {
         			if (args[0].equalsIgnoreCase("debug")) {
         				Player player = (Player)sender;
         				for (Arena arena : this.arenaManager.getArenas()) {
-        					Bukkit.broadcastMessage(arena.id + ":" +arena.name + " | active:" + arena.active);
+        					Bukkit.broadcastMessage(arena.id + ":" +arena.name + " | active:" + arena.isActive());
         					Bukkit.broadcastMessage("You are " + ((this.queueManager.isPlayerInQueue(player.getUniqueId())?"":"not ") + "in queue."));
         					if (this.queueManager.isPlayerInQueue(player.getUniqueId())) {
         						Date date = this.queueManager.getJoinDate(player.getUniqueId());

@@ -1,19 +1,12 @@
-package com.minehut.pvp;
+package com.minehut.pvp.queue;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.EnumSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
+import com.minehut.pvp.Core;
+import com.minehut.pvp.arena.ArenaType;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 public class QueuePlayer {
 

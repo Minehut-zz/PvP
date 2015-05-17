@@ -1,4 +1,4 @@
-package com.minehut.pvp;
+package com.minehut.pvp.arena;
 
 public enum ArenaType {
 

@@ -1,4 +1,4 @@
-package com.minehut.pvp.Listeners;
+package com.minehut.pvp.listeners;
 
 import com.minehut.api.API;
 import com.minehut.api.util.player.GamePlayer;
@@ -6,8 +6,7 @@ import com.minehut.api.util.player.Rank;
 import com.minehut.commons.common.chat.C;
 import com.minehut.commons.common.level.Level;
 import com.minehut.commons.common.player.PlayerUtil;
-import com.minehut.pvp.Arena;
-import com.minehut.pvp.Arena.Team;
+import com.minehut.pvp.arena.Arena.Team;
 import com.minehut.pvp.Core;
 
 import org.bukkit.Bukkit;
@@ -23,7 +22,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.*;
@@ -34,15 +32,12 @@ import org.bukkit.event.weather.WeatherChangeEvent;
  */
 public class BukkitListeners implements Listener {
     private Core core;
-    public Location spawn;
 
     public BukkitListeners(Core core) {
         this.core = core;
         Bukkit.getServer().getPluginManager().registerEvents(this, core);
 
-        /* Spawn. todo: load/update via database for spawn updates without needing to restart. */
-        Bukkit.getWorlds().get(0).setSpawnLocation(0, 72, 0);
-        this.spawn = new Location(Bukkit.getServer().getWorlds().get(0), 0, 72, 0);
+        Bukkit.getServer().getWorlds().get(0).setSpawnLocation(0, 72, 0);
     }
 
     @EventHandler
@@ -82,14 +77,12 @@ public class BukkitListeners implements Listener {
 
         /* Check if hurt player is in arena */
         if (!core.getArenaManager().isPlayerInArena(hurtPlayer)) {
-            Bukkit.broadcastMessage("Not in arena");
             event.setCancelled(true);
         }
 
         /* Check if damager player is in arena with hurt player */
         if (damagerEntity instanceof Player) { //Allow mobs to damage player
             if (!core.getArenaManager().isPlayerInArena((Player) damagerEntity)) {
-                Bukkit.broadcastMessage("Not in arena");
                 event.setCancelled(true); // Spectator
             }
         }
@@ -124,13 +117,14 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        event.setRespawnLocation(this.spawn);
+        event.setRespawnLocation(this.getSpawn());
+        event.getPlayer().setBedSpawnLocation(this.getSpawn());
         PlayerUtil.clearAll(event.getPlayer());
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        event.getPlayer().teleport(this.spawn);
+        event.getPlayer().teleport(this.getSpawn());
         event.getPlayer().setPlayerWeather(WeatherType.CLEAR);
         PlayerUtil.clearAll(event.getPlayer());
         if (this.core.queueManager.isPlayerInQueue(event.getPlayer().getUniqueId())) {
@@ -189,7 +183,7 @@ public class BukkitListeners implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         /* Fall below spawn */
         if (event.getPlayer().getLocation().getY() <= 20) {
-            event.setTo(this.spawn);
+            event.setTo(this.getSpawn());
         }
         if (!this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
         	event.getPlayer().setHealth(20D);
@@ -251,5 +245,9 @@ public class BukkitListeners implements Listener {
             event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " + rank.getTag() + 
             		player.getDisplayName()  + C.white + "(" + this.core.eloManager.getELO(player) +")" + C.white + ": " + C.white + "%2$s");
         }
+    }
+
+    Location getSpawn() {
+        return Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
     }
 }
