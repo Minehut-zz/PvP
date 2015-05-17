@@ -78,12 +78,14 @@ public class BukkitListeners implements Listener {
 
         /* Check if hurt player is in arena */
         if (!core.getArenaManager().isPlayerInArena(hurtPlayer)) {
+            Bukkit.broadcastMessage("Not in arena");
             event.setCancelled(true);
         }
 
         /* Check if damager player is in arena with hurt player */
         if (damagerEntity instanceof Player) { //Allow mobs to damage player
             if (!core.getArenaManager().isPlayerInArena((Player) damagerEntity)) {
+                Bukkit.broadcastMessage("Not in arena");
                 event.setCancelled(true); // Spectator
             }
         }
