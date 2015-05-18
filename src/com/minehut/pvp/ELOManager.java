@@ -70,6 +70,45 @@ public class ELOManager {
 		
 	//}
 	
+	public Division getPlayerDivisionForElo(ELO elo) {
+		if (elo.currentELO > 0 && elo.currentELO < 1149) {
+			return Division.Bronze;
+		} else
+		if (elo.currentELO > 1150 && elo.currentELO < 1499) {
+			return Division.Silver;
+		} else 
+		if (elo.currentELO > 1500 && elo.currentELO < 1849) {
+			return Division.Gold;
+		} else 
+		if (elo.currentELO > 1850 && elo.currentELO < 2199) {
+			return Division.Platinum;
+		} else 
+		if (elo.currentELO > 2200) {
+			return Division.Diamond;
+		} else {
+			return Division.UnRanked;
+		}
+	}
+	
+	public enum Division {
+		Bronze("Bronze"), Silver("Silver"), Gold("Gold"), Platinum("Platinum "), Diamond("Diamond"), UnRanked("Unranked");
+		private String div;
+		private Division(String div) {
+			this.div = div;
+		}
+	}
+	
+	public ELO getHighestELOAsELO(Player player) {
+		if (this.hasELO(player)) {
+			PlayerRanks playerRanks = this.getPlayerRanks(player);
+			Collections.sort(playerRanks.ranks, new ELOComparator());
+			return (playerRanks.ranks.size()>=1)?playerRanks.ranks.get(0):new ELO();
+		} else {
+			return new ELO();
+		}
+		
+	}
+	
 	public int getHighestELO(Player player) {
 		if (this.hasELO(player)) {
 			PlayerRanks playerRanks = this.getPlayerRanks(player);
