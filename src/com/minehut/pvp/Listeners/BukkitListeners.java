@@ -58,7 +58,7 @@ public class BukkitListeners implements Listener {
         event.getDrops().clear();
 
         if (event.getEntity().getKiller() != null) {
-            new DeathStat(event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
+            new DeathStat(this.core, event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
         }
 
         core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
@@ -137,6 +137,7 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         event.setRespawnLocation(this.getSpawn());
+        event.getPlayer().teleport(this.getSpawn());
         EventCaller.callSpawnPreparePlayer(event.getPlayer());
     }
 
@@ -183,10 +184,6 @@ public class BukkitListeners implements Listener {
         /* Fall below spawn */
         if (event.getPlayer().getLocation().getY() <= 20) {
             event.setTo(this.getSpawn());
-        }
-        if (!this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
-        	//event.getPlayer().setHealth(20D);
-        	//event.getPlayer().setFoodLevel(20);
         }
     }
 
