@@ -24,6 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -290,8 +291,8 @@ public class BukkitListeners implements Listener {
         int level = gamePlayer.getLevel();
 
         int currentELO = this.core.eloManager.getHighestELO(player);
-        event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " + 
-        rank.getTag() + player.getDisplayName() + C.white + "(" + ((currentELO > 500)?currentELO:"Unranked") +")" + ((rank == Rank.regular)?C.gray:C.white) + ": " + ((rank == Rank.regular)?C.gray:C.white)+ "%2$s");
+        event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " +
+                rank.getTag() + player.getDisplayName() + C.white + "(" + ((currentELO > 500) ? currentELO : "Unranked") + ")" + ((rank == Rank.regular) ? C.gray : C.white) + ": " + ((rank == Rank.regular) ? C.gray : C.white) + "%2$s");
         
     }
 
@@ -307,4 +308,8 @@ public class BukkitListeners implements Listener {
         }
     }
 
+    @EventHandler
+    public void onLeaveDecay(LeavesDecayEvent event) {
+        event.setCancelled(true);
+    }
 }
