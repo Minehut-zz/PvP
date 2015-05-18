@@ -12,6 +12,7 @@ import com.minehut.pvp.Core;
 
 import com.minehut.pvp.events.EventCaller;
 import com.minehut.pvp.events.events.SpawnPreparePlayerEvent;
+import com.minehut.pvp.stats.DeathStat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.WeatherType;
@@ -53,12 +54,14 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-    	core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
-
         /* Clear Item Drops */
         event.getDrops().clear();
 
-        /* todo: database stat updates (kills/deaths). */
+        if (event.getEntity().getKiller() != null) {
+            new DeathStat(event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
+        }
+
+        core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));
     }
 
     @EventHandler
