@@ -10,6 +10,8 @@ import com.minehut.commons.common.player.PlayerUtil;
 import com.minehut.pvp.arena.Arena.Team;
 import com.minehut.pvp.Core;
 
+import com.minehut.pvp.events.EventCaller;
+import com.minehut.pvp.events.events.SpawnPreparePlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.WeatherType;
@@ -40,6 +42,13 @@ public class BukkitListeners implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, core);
 
         Bukkit.getServer().getWorlds().get(0).setSpawnLocation(0, 72, 0);
+    }
+
+    @EventHandler
+    public void onSpawnPreparePlayer(SpawnPreparePlayerEvent event) {
+        event.getPlayer().setPlayerWeather(WeatherType.CLEAR);
+        PlayerUtil.clearAll(event.getPlayer());
+        event.getPlayer().getInventory().setItem(1, this.core.getGuiMenus().getQueueItem());
     }
 
     @EventHandler
@@ -125,7 +134,7 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         event.setRespawnLocation(this.getSpawn());
-        this.spawnEquipPlayer(event.getPlayer());
+        EventCaller.callSpawnPreparePlayer(event.getPlayer());
     }
 
     @EventHandler
@@ -136,7 +145,7 @@ public class BukkitListeners implements Listener {
             this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
 
-        this.spawnEquipPlayer(event.getPlayer());
+        EventCaller.callSpawnPreparePlayer(event.getPlayer());
     }
 
     @EventHandler
@@ -149,14 +158,6 @@ public class BukkitListeners implements Listener {
             core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
             Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
 
-//        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
-//        	Team team = arena.getPlayerTeam(event.getPlayer());
-//        	if (team == Team.TEAM1) {
-//        		arena.end(Team.TEAM2);
-//        	} else
-//        	if (team == Team.TEAM2) {
-//        		arena.end(Team.TEAM1);
-//        	}
         }
 
 
@@ -171,15 +172,6 @@ public class BukkitListeners implements Listener {
 
             core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
             Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
-
-//        	Arena arena = this.core.arenaManager.getPlayerArena(event.getPlayer());
-//        	Team team = arena.getPlayerTeam(event.getPlayer());
-//        	if (team == Team.TEAM1) {
-//        		arena.end(Team.TEAM2);
-//        	} else
-//        	if (team == Team.TEAM2) {
-//        		arena.end(Team.TEAM1);
-//        	}
         }
     }
     
@@ -260,9 +252,4 @@ public class BukkitListeners implements Listener {
         }
     }
 
-    public void spawnEquipPlayer(Player player) {
-        player.setPlayerWeather(WeatherType.CLEAR);
-        PlayerUtil.clearAll(player);
-        player.getInventory().addItem(this.core.getGuiMenus().getQueueItem());
-    }
 }

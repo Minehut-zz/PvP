@@ -11,6 +11,7 @@ import com.minehut.commons.common.player.PlayerUtil;
 
 import com.minehut.pvp.Core;
 import com.minehut.pvp.HutLocation;
+import com.minehut.pvp.events.EventCaller;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -70,10 +71,11 @@ public class Arena {
 			int team2ELO = this.getTeamELO(Team.TEAM2);
 			for (UUID uuid : this.team1) {
 				//TODO: reward player and calc ELO
+
 				Player player = Bukkit.getPlayer(uuid);
-				PlayerUtil.clearAll(player);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
-				player.getInventory().addItem(this.core.getGuiMenus().getQueueItem());
+				EventCaller.callSpawnPreparePlayer(player);
+
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.type, this.core.eloManager.getWinnerELO(team1ELO, team2ELO));
 			}
@@ -88,10 +90,11 @@ public class Arena {
 			int team2ELO = this.getTeamELO(Team.TEAM2);
 			for (UUID uuid : this.team2) {
 				//TODO: reward player and calc ELO
+
 				Player player = Bukkit.getPlayer(uuid);
-				PlayerUtil.clearAll(player);
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
-				player.getInventory().addItem(this.core.getGuiMenus().getQueueItem());
+				EventCaller.callSpawnPreparePlayer(player);
+
 				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.type, this.core.eloManager.getWinnerELO(team2ELO, team1ELO));
 			}
