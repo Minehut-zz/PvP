@@ -9,7 +9,11 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import com.minehut.pvp.Core;
+import com.minehut.pvp.ELOManager.ELO;
 import com.minehut.pvp.arena.ArenaType;
 
 public class QueueManager {
@@ -66,18 +70,19 @@ public class QueueManager {
 	}
 	
 	public void joinQueue(UUID uuid, String type) {
-		try {
-			PreparedStatement statement = this.core.api.getStatManager().getMySQL().getConnection().prepareStatement(
-							"INSERT INTO `queue` (`id`, `uuid`, `join_time`, `type`)" +
-							" VALUES (NULL, '" + uuid.toString() + "', '" + System.currentTimeMillis() + "', '" + type + "')");
-			statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		this.joinQueue(uuid, ArenaType.valueOf(type));
 	}
 
 	public void joinQueue(UUID uuid, ArenaType type) {
+		Player player = Bukkit.getPlayer(uuid);
+		if (!this.core.eloManager.hasELO(player)) {
+			this.core.eloManager.createPlayerRanks(player);
+		}
+		if (!this.core.eloManager.hasELOInArena(player, type)) {
+			this.core.eloManager.getPlayerRanks(player).addELORank(this.core.eloManager.new ELO().setArenaType(type)).updateRanks();
+		} else {
+			System.out.println(player.getName() + " has an elo of " + this.core.eloManager.getELOInArena(player, type).currentELO);
+		}
 		try {
 			PreparedStatement statement = this.core.api.getStatManager().getMySQL().getConnection().prepareStatement(
 					"INSERT INTO `queue` (`id`, `uuid`, `join_time`, `type`)" +

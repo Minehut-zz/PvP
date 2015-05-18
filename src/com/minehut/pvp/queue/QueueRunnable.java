@@ -85,6 +85,7 @@ public class QueueRunnable extends BukkitRunnable {
 							for (QueuePlayer qPlayer : tempPlayers) {
 								if (qPlayer.getPlayer().isOnline()) {
 									qPlayer.getPlayer().getPlayer().sendMessage("Your match has been closed due to an error, please re-queue!");
+									qPlayer.leaveQueue();
 								}
 							}
 						}
