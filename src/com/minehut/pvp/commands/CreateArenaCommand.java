@@ -60,7 +60,7 @@ public class CreateArenaCommand extends Command {
 
             Arena arena = core.getArenaManager().getArena(args.get(1));
             if (arena == null) {
-                player.sendMessage(C.red + "Couldn't find arena " + C.aqua + args.get(1));
+                player.sendMessage(C.red + "Couldn'listeners find arena " + C.aqua + args.get(1));
                 return false;
             }
 

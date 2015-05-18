@@ -1,4 +1,4 @@
-package com.minehut.pvp.Listeners;
+package com.minehut.pvp.listeners;
 
 import com.minehut.api.API;
 import com.minehut.api.util.player.GamePlayer;
@@ -197,6 +197,10 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
+        if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+            return; //Allow drops in game
+        }
+
         if (!API.getAPI().getGamePlayer(event.getPlayer()).getRank().has(null, Rank.Admin, false)) {
             event.setCancelled(true);
             event.getPlayer().updateInventory();
@@ -205,6 +209,11 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+            event.setCancelled(true);
+            return;
+        }
+
         GamePlayer gamePlayer = API.getAPI().getGamePlayer(event.getPlayer());
         if (!gamePlayer.getRank().has(null, Rank.Admin, false)) {
             event.setCancelled(true);
@@ -213,6 +222,11 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
+        if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+            event.setCancelled(true);
+            return;
+        }
+
         GamePlayer gamePlayer = API.getAPI().getGamePlayer(event.getPlayer());
         if (!gamePlayer.getRank().has(null, Rank.Admin, false)) {
             event.setCancelled(true);
@@ -222,6 +236,9 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onMoveInventory(InventoryMoveItemEvent event) {
+        if (this.core.arenaManager.isPlayerInArena((Player) event.getSource().getHolder())) {
+            return; //Allow inv move in game
+        }
         event.setCancelled(true);
     }
 

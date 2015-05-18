@@ -11,8 +11,8 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import com.minehut.api.util.kit.Kit;
+import com.minehut.pvp.commands.EloCommand;
 import com.minehut.pvp.gui.GUIMenus;
-import com.minehut.pvp.Listeners.BukkitListeners;
 import com.minehut.pvp.arena.Arena;
 import com.minehut.pvp.arena.ArenaManager;
 import com.minehut.pvp.commands.CreateArenaCommand;
@@ -20,6 +20,7 @@ import com.minehut.pvp.commands.JoinCommand;
 import com.minehut.pvp.kits.KitBoth;
 import com.minehut.pvp.kits.KitMelee;
 import com.minehut.pvp.kits.KitRanged;
+import com.minehut.pvp.listeners.BukkitListeners;
 import com.minehut.pvp.queue.QueueManager;
 import com.minehut.pvp.queue.QueueRunnable;
 
@@ -74,6 +75,7 @@ public class Core extends JavaPlugin implements Listener {
 		/* Commands */
 		new CreateArenaCommand(this);
 		new JoinCommand(this);
+		new EloCommand(this);
 		
 		/* Kits */
 		this.kits = new ArrayList<>();
@@ -178,5 +180,9 @@ public class Core extends JavaPlugin implements Listener {
 
 	public GUIMenus getGuiMenus() {
 		return guiMenus;
+	}
+
+	public ELOManager getEloManager() {
+		return eloManager;
 	}
 }

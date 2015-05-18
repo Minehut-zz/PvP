@@ -164,7 +164,7 @@ public class ELOManager {
 	}
 	
 	//public void setELO(Player player, int ELO) {
-		//t//his.core.api.getStatManager().getMySQL().setData("uuid", player.getUniqueId().toString(), "elo", Integer.toString(ELO), "player_elo");
+		//listeners//his.core.api.getStatManager().getMySQL().setData("uuid", player.getUniqueId().toString(), "elo", Integer.toString(ELO), "player_elo");
 	//}
 	
 	
