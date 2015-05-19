@@ -87,12 +87,14 @@ public class ArenaManager {
 		ArrayList<Player> players = new ArrayList<>();
 
 		for (Arena arena : this.getArenas()) {
-			if (arena.isActive()) {
-				for (UUID uuid : arena.getTeam1()) {
-					players.add(Bukkit.getServer().getPlayer(uuid));
-				}
-				for (UUID uuid : arena.getTeam2()) {
-					players.add(Bukkit.getServer().getPlayer(uuid));
+			if(arena.getType() == arenaType) {
+				if (arena.isActive()) {
+					for (UUID uuid : arena.getTeam1()) {
+						players.add(Bukkit.getServer().getPlayer(uuid));
+					}
+					for (UUID uuid : arena.getTeam2()) {
+						players.add(Bukkit.getServer().getPlayer(uuid));
+					}
 				}
 			}
 		}

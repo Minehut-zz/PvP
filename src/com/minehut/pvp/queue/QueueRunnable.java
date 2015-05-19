@@ -1,6 +1,7 @@
 package com.minehut.pvp.queue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.minehut.pvp.Core;
 import com.minehut.pvp.arena.Arena;
@@ -22,6 +23,7 @@ public class QueueRunnable extends BukkitRunnable {
 		for (ArenaType type : ArenaType.values()) {
 //			System.out.println("Checking for open arenas with the type: " + type.toString());
 			ArrayList<Arena> tempArenas = this.core.arenaManager.getEmptyArenasOfType(type); //Less sql calls
+			Collections.shuffle(tempArenas);
 			if (tempArenas.size()>=1) {
 				ArrayList<QueuePlayer> tempPlayers = this.core.queueManager.getPlayersInQueue(type);
 				if (tempPlayers.size()>=2) {
