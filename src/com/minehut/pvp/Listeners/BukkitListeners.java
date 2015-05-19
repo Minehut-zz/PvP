@@ -1,4 +1,4 @@
-package com.minehut.pvp.listeners;
+package com.minehut.pvp.Listeners;
 
 import com.minehut.api.API;
 import com.minehut.api.util.player.GamePlayer;

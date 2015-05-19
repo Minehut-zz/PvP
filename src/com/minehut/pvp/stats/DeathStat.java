@@ -48,7 +48,7 @@ public class DeathStat {
     private void upload(Core core) {
         final String json = new Gson().toJson(this);
 
-        Bukkit.getServer().getScheduler().runTaskAsynchronously(core, new Runnable() {
+        /* Bukkit.getServer().getScheduler().runTaskAsynchronously(core, new Runnable() {
             @Override
             public void run() {
                 try {
@@ -61,7 +61,7 @@ public class DeathStat {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
 
     }
 

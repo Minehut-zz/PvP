@@ -64,6 +64,10 @@ public class ELOManager {
 			this.eloType = type;
 			return this;
 		}
+		public ELO setCurrentELO(int elo) {
+			this.currentELO = elo;
+			return this;
+		}
 	}
 	
 	//public void setELO(Player player, ELO elo) {
@@ -102,9 +106,9 @@ public class ELOManager {
 		if (this.hasELO(player)) {
 			PlayerRanks playerRanks = this.getPlayerRanks(player);
 			Collections.sort(playerRanks.ranks, new ELOComparator());
-			return (playerRanks.ranks.size()>=1)?playerRanks.ranks.get(0):new ELO();
+			return (playerRanks.ranks.size()>=1)?playerRanks.ranks.get(0):new ELO().setCurrentELO(-1);
 		} else {
-			return new ELO();
+			return new ELO().setCurrentELO(-1);
 		}
 		
 	}

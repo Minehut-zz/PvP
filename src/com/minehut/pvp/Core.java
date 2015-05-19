@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import com.minehut.api.util.kit.Kit;
 import com.minehut.pvp.commands.EloCommand;
 import com.minehut.pvp.gui.GUIMenus;
+import com.minehut.pvp.Listeners.BukkitListeners;
 import com.minehut.pvp.arena.Arena;
 import com.minehut.pvp.arena.ArenaManager;
 import com.minehut.pvp.commands.CreateArenaCommand;
@@ -20,7 +21,6 @@ import com.minehut.pvp.commands.JoinCommand;
 import com.minehut.pvp.kits.KitPot;
 import com.minehut.pvp.kits.KitCQB;
 import com.minehut.pvp.kits.KitRanged;
-import com.minehut.pvp.listeners.BukkitListeners;
 import com.minehut.pvp.queue.QueueManager;
 import com.minehut.pvp.queue.QueueRunnable;
 

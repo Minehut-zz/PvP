@@ -22,15 +22,9 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/QueueManager.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/QueuePlayer.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueuePlayer.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/QueueRunnable.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/arena/ArenaManager.class" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/arena/ArenaManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/queue/QueueRunnable.class" afterPath="$PROJECT_DIR$/out/production/PvP/com/minehut/pvp/queue/QueueRunnable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/arena/ArenaManager.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/arena/ArenaManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/HutLocation.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/HutLocation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PvP/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/PvP/.idea/workspace.xml" />
     </list>
     <ignored path="PvP.iws" />
     <ignored path=".idea/workspace.xml" />
