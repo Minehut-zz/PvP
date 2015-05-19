@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 import com.minehut.api.util.kit.Kit;
 import com.minehut.pvp.commands.EloCommand;
 import com.minehut.pvp.gui.GUIMenus;
-import com.minehut.pvp.Listeners.BukkitListeners;
+import com.minehut.pvp.kits.KitMCSG;
+import com.minehut.pvp.listeners.BukkitListeners;
 import com.minehut.pvp.arena.Arena;
 import com.minehut.pvp.arena.ArenaManager;
 import com.minehut.pvp.commands.CreateArenaCommand;
@@ -82,16 +83,29 @@ public class Core extends JavaPlugin implements Listener {
 		this.kits.add(new KitCQB(this));
 		this.kits.add(new KitRanged(this));
 		this.kits.add(new KitPot(this));
+		this.kits.add(new KitMCSG(this));
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 
 		for (Arena arena : this.arenaManager.getArenas()) {
 			arena.setActive(false);
+			arena.getTeam1().clear();
+			arena.getTeam2().clear();
 			arena.updateArena();
 		}
 		
 	//	Arena testArena = new Arena();
 	//	System.out.println(gson.toJson(testArena));
+	}
+
+	@Override
+	public void onDisable() {
+		for (Arena arena : this.arenaManager.getArenas()) {
+			arena.setActive(false);
+			arena.getTeam1().clear();
+			arena.getTeam2().clear();
+			arena.updateArena();
+		}
 	}
 	
 	

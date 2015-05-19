@@ -70,7 +70,7 @@ public class GUIMenus implements Listener {
         }
         int totalPlayers = queueSize + playersInGame;
 
-        return ItemStackFactory.createItem(arenaType.getMaterial(), C.yellow + arenaType.getType(),
+        return ItemStackFactory.createItem(arenaType.getMaterial(), arenaType.getDisplayName(),
                 Arrays.asList("", C.gray + "Players: " + C.aqua + Integer.toString(totalPlayers), ""));
     }
 

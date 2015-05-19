@@ -76,7 +76,7 @@ public class Arena {
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
 				EventCaller.callSpawnPreparePlayer(player);
 
-				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
+				//TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.type, this.core.eloManager.getWinnerELO(team1ELO, team2ELO));
 			}
 			for (UUID uuid : this.team2) {
@@ -95,7 +95,7 @@ public class Arena {
 				player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
 				EventCaller.callSpawnPreparePlayer(player);
 
-				player.sendMessage("You win!! Thank you for playing."); //TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
+				//TODO: JSON MESSAGES WITH COMMAND TO REQUEUE
 				this.core.eloManager.setELO(player, this.type, this.core.eloManager.getWinnerELO(team2ELO, team1ELO));
 			}
 			for (UUID uuid : this.team1) {
@@ -120,7 +120,7 @@ public class Arena {
 			player.teleport(this.team2Spawn.getLocation());
 			player.sendMessage("Sending you to Arena on Team 2");
 		}
-		Kit kit = core.getKit(this.type.name());
+		Kit kit = core.getKit(this.type.getType());
 		F.log("applying kit " + kit.getName());
 		kit.equip(core.api.getGamePlayer(player));
 	}

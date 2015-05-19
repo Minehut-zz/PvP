@@ -58,7 +58,7 @@ public class ELOManager {
 
 	public class ELO {
 		public ArenaType eloType = ArenaType.pot;
-		public int currentELO = 1200;
+		public int currentELO = 1050;
 		public ELO setArenaType(ArenaType type) {
 			this.eloType = type;
 			return this;
@@ -298,6 +298,11 @@ public class ELOManager {
 		if (this.cachedElos.containsKey(player.getUniqueId())) {
 			this.cachedElos.remove(player.getUniqueId());
 		}
+
+		if(this.getPlayerRanks(player).ranks != null) {
+			this.createPlayerRanks(player);
+		}
+
 		return this.cachedElos.put(player.getUniqueId(), this.getPlayerRanks(player).ranks);
 	}
 

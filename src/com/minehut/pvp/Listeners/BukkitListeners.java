@@ -1,4 +1,4 @@
-package com.minehut.pvp.Listeners;
+package com.minehut.pvp.listeners;
 
 import com.minehut.api.API;
 import com.minehut.api.util.player.GamePlayer;
@@ -55,27 +55,32 @@ public class BukkitListeners implements Listener {
         PlayerUtil.clearAll(player);
         player.getInventory().setItem(1, this.core.getGuiMenus().getQueueItem());
 
-        /* Elo */
-        ArrayList<ELOManager.ELO> oldElo = this.core.getEloManager().getCachedElos(player);
-        ArrayList<ELOManager.ELO> newElo = this.core.getEloManager().updatedCachedElos(player);
+//        if(this.core.getEloManager().hasELO(event.getPlayer())) {
+//            /* Elo */
+//            ArrayList<ELOManager.ELO> oldElo = this.core.getEloManager().getCachedElos(player);
+//            ArrayList<ELOManager.ELO> newElo = this.core.getEloManager().updatedCachedElos(player);
+//
+//            /* Make sure player didn't just log in */
+//            if (oldElo != null && !oldElo.isEmpty()) {
+//                for (ELOManager.ELO old : oldElo) {
+//                    ELOManager.Division oldDivision = this.core.getEloManager().getPlayerDivisionForElo(old);
+//                    ELOManager.Division newDivision = this.core.getEloManager().getPlayerDivisionForElo(newElo.get(oldElo.indexOf(old)));
+//
+//                    /* Old was worse than new */
+//                    if (oldDivision.compareTo(newDivision) < 0) {
+//                        Bukkit.broadcastMessage("");
+//                        Bukkit.broadcastMessage(C.aqua + player.getName() + C.white + " was promoted to " + C.yellow + C.bold + newDivision.name().toUpperCase());
+//                        Bukkit.broadcastMessage("");
+//                    } else {
+//                        F.log("ELO: " + player.getName() + " | Both were same: " + newDivision.name() + " / " + oldDivision.name());
+//                    }
+//                }
+//            } else {
+//                F.log("either oldElo or newElo was null");
+//            }
 
-        /* Make sure player didn't just log in */
-        if (oldElo != null && !oldElo.isEmpty()) {
-            for (ELOManager.ELO old : oldElo) {
-                ELOManager.Division oldDivision = this.core.getEloManager().getPlayerDivisionForElo(old);
-                ELOManager.Division newDivision = this.core.getEloManager().getPlayerDivisionForElo(newElo.get(oldElo.indexOf(old)));
-
-            /* Old was worse than new */
-                if (oldDivision.compareTo(newDivision) < 0) {
-                    Bukkit.broadcastMessage("");
-                    Bukkit.broadcastMessage(C.aqua + player.getName() + C.white + " was promoted to " + C.yellow + C.bold + newDivision.name().toUpperCase());
-                    Bukkit.broadcastMessage("");
-                }
-            }
-        }
-
-        /* Equip armor */
-        this.equipDivisionalArmor(player);
+            /* Equip armor */
+            this.equipDivisionalArmor(player);
     }
 
     public void equipDivisionalArmor(Player player) {
@@ -116,6 +121,7 @@ public class BukkitListeners implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         /* Clear Item Drops */
         event.getDrops().clear();
+        event.setDeathMessage(C.yellow + event.getDeathMessage());
 
         if (event.getEntity().getKiller() != null) {
             new DeathStat(this.core, event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
@@ -317,9 +323,7 @@ public class BukkitListeners implements Listener {
         Rank rank = gamePlayer.getRank();
         int level = gamePlayer.getLevel();
 
-        int currentELO = this.core.eloManager.getHighestELO(player);
-        event.setFormat(Level.getLevelColor(level) + Integer.toString(level) + " " +
-                rank.getTag() + player.getDisplayName() + C.white + "(" + ((currentELO > 500) ? currentELO : "Unranked") + ")" + ((rank == Rank.regular) ? C.gray : C.white) + ": " + ((rank == Rank.regular) ? C.gray : C.white) + "%2$s");
+        event.setFormat(rank.getTag() + player.getDisplayName() + ((rank == Rank.regular) ? C.gray : C.white) + ": " + ((rank == Rank.regular) ? C.gray : C.white) + "%2$s");
         
     }
 

@@ -6,7 +6,7 @@ import org.bukkit.Material;
 public enum  ArenaType {
 
 	pot("pot", C.green + C.bold + "POT", Material.POTION),
-	mcsg("mcsg", C.gold + C.bold + "MCSG", Material.APPLE),
+	mcsg("mcsg", C.gold + C.bold + "MCSG", Material.FISHING_ROD),
 	cqb("cqb", C.red + C.bold + "CQB", Material.STONE_SWORD),
 	ranged("ranged", C.yellow + C.bold + "RANGED", Material.BOW);
 
