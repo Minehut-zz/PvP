@@ -1,18 +1,22 @@
 package com.minehut.pvp.arena;
 
+import com.minehut.commons.common.chat.C;
 import org.bukkit.Material;
 
 public enum  ArenaType {
 
-	ranged("ranged", Material.BOW),
-	melee("melee", Material.STONE_SWORD),
-	both("both", Material.WOOD_SWORD);
+	pot("pot", C.green + C.bold + "POT", Material.POTION),
+	mcsg("mcsg", C.gold + C.bold + "MCSG", Material.APPLE),
+	cqb("cqb", C.red + C.bold + "CQB", Material.STONE_SWORD),
+	ranged("ranged", C.yellow + C.bold + "RANGED", Material.BOW);
 
 	private String type;
+	private String displayName;
 	private Material material;
 	
-	private ArenaType(String type, Material material) {
+	private ArenaType(String type, String displayName, Material material) {
 		this.type = type;
+		this.displayName = displayName;
 		this.material = material;
 	}
 
@@ -38,5 +42,9 @@ public enum  ArenaType {
 
 	public Material getMaterial() {
 		return material;
+	}
+
+	public String getDisplayName() {
+		return displayName;
 	}
 }

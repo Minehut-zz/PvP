@@ -9,9 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * Created by luke on 5/16/15.
  */
-public class KitMelee extends Kit {
+public class KitCQB extends Kit {
 
-    public KitMelee(JavaPlugin plugin) {
+    public KitCQB(JavaPlugin plugin) {
         super(plugin, "Melee", Material.STONE_SWORD, 0);
 
         super.addItem(ItemStackFactory.createItem(Material.STONE_SWORD));

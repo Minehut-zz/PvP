@@ -58,7 +58,7 @@ public class ELOManager {
 	}
 	
 	public class ELO {
-		public ArenaType eloType = ArenaType.melee;
+		public ArenaType eloType = ArenaType.pot;
 		public int currentELO = 1200;
 		public ELO setArenaType(ArenaType type) {
 			this.eloType = type;

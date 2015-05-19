@@ -34,7 +34,7 @@ public class Arena {
 	
 	public ArrayList<UUID> team1 = new ArrayList<UUID>(), team2 = new ArrayList<UUID>();
 	
-	public ArenaType type = ArenaType.melee;
+	public ArenaType type = ArenaType.pot;
 	
 	public int maxWait = 180, startDelay = 20; //Max wait = time until arena auto resets from no joins, startDelay = delay before starting after everyone is ready.
 	

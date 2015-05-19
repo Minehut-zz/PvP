@@ -17,8 +17,8 @@ import com.minehut.pvp.arena.Arena;
 import com.minehut.pvp.arena.ArenaManager;
 import com.minehut.pvp.commands.CreateArenaCommand;
 import com.minehut.pvp.commands.JoinCommand;
-import com.minehut.pvp.kits.KitBoth;
-import com.minehut.pvp.kits.KitMelee;
+import com.minehut.pvp.kits.KitPot;
+import com.minehut.pvp.kits.KitCQB;
 import com.minehut.pvp.kits.KitRanged;
 import com.minehut.pvp.listeners.BukkitListeners;
 import com.minehut.pvp.queue.QueueManager;
@@ -79,9 +79,9 @@ public class Core extends JavaPlugin implements Listener {
 		
 		/* Kits */
 		this.kits = new ArrayList<>();
-		this.kits.add(new KitMelee(this));
+		this.kits.add(new KitCQB(this));
 		this.kits.add(new KitRanged(this));
-		this.kits.add(new KitBoth(this));
+		this.kits.add(new KitPot(this));
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 
