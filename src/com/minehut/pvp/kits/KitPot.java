@@ -28,7 +28,7 @@ public class KitPot extends Kit {
         Potion healingPot = new Potion(PotionType.INSTANT_HEAL, 2, true);
         super.addItem(healingPot.toItemStack(1));
 
-        Potion fireResistance = new Potion(PotionType.FIRE_RESISTANCE, 1, true);
+        Potion fireResistance = new Potion(PotionType.FIRE_RESISTANCE, 1, false);
         super.addItem(fireResistance.toItemStack(1));
 
         Potion regen = new Potion(PotionType.REGEN, 2, false);
@@ -40,7 +40,16 @@ public class KitPot extends Kit {
         Potion speed = new Potion(PotionType.SPEED, 2, false);
         super.addItem(speed.toItemStack(1));
 
-        super.addItem(healingPot.toItemStack(9));
+        /* One row of health pots, non stacked */
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
+        super.addItem(healingPot.toItemStack(1));
 
         super.addItem(ItemStackFactory.createItem(Material.ARROW, 64));
 

@@ -18,7 +18,7 @@ public class EloCommand extends Command {
     private Core core;
 
     public EloCommand(Core core) {
-        super(core, "elo", Rank.regular);
+        super(core, "ranks", Rank.regular);
         this.core = core;
     }
 

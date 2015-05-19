@@ -22,7 +22,6 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/QueueManager.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/QueuePlayer.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueuePlayer.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/QueueRunnable.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/Core.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/minehut/pvp/HutLocation.java" afterPath="$PROJECT_DIR$/src/com/minehut/pvp/HutLocation.java" />
     </list>
@@ -46,35 +45,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Arena.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/arena/Arena.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ELOManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/ELOManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="37" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
+            <state vertical-scroll-proportion="-7.185185">
+              <caret line="42" column="36" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="36" />
               <folding>
-                <element signature="e#2305#2306#0" expanded="true" />
-                <element signature="e#2328#2329#0" expanded="true" />
+                <element signature="e#2374#2375#0" expanded="true" />
+                <element signature="e#2397#2398#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KitRanged.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/kits/KitRanged.java">
+      <file leaf-file-name="BukkitListeners.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="18" selection-end-column="71" />
-              <folding />
+            <state vertical-scroll-proportion="-14.703704">
+              <caret line="232" column="27" selection-start-line="232" selection-start-column="27" selection-end-line="232" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#14404#14405#0" expanded="true" />
+                <element signature="e#14483#14484#0" expanded="true" />
+                <element signature="e#14826#14827#0" expanded="true" />
+                <element signature="e#14866#14867#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/kits/KitPot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+              <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -138,21 +133,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueueManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QueueManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="128" selection-start-line="88" selection-start-column="128" selection-end-line="88" selection-end-column="128" />
+            <state vertical-scroll-proportion="0.41194487">
+              <caret line="88" column="71" selection-start-line="88" selection-start-column="71" selection-end-line="88" selection-end-column="71" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueueRunnable.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QueueRunnable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6397059">
-              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+            <state vertical-scroll-proportion="-7.185185">
+              <caret line="42" column="32" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueuePlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueuePlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="15" column="20" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -192,7 +199,6 @@
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/Listeners/BukkitListeners.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/QueueRunnable.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/commands/JoinCommand.java" />
-        <option value="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/gui/GUIMenus.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/events/events/StatusUpdateEvent.java" />
@@ -203,14 +209,15 @@
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/commands/EloCommand.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/gson/GsonFactory.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/stats/DeathStat.java" />
-        <option value="$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/arena/ArenaType.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/arena/Arena.java" />
-        <option value="$PROJECT_DIR$/src/com/minehut/pvp/ELOManager.java" />
-        <option value="$PROJECT_DIR$/src/com/minehut/pvp/kits/KitPot.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/commands/CreateArenaCommand.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/arena/ArenaManager.java" />
         <option value="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java" />
+        <option value="$PROJECT_DIR$/src/com/minehut/pvp/kits/KitPot.java" />
+        <option value="$PROJECT_DIR$/src/com/minehut/pvp/ELOManager.java" />
+        <option value="$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java" />
+        <option value="$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java" />
       </list>
     </option>
   </component>
@@ -427,6 +434,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="events" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PvP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PvP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PvP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PvP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="commands" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -611,10 +666,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="23" width="1225" height="777" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.098870054" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -622,19 +678,18 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22612245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22612245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09912854" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328341" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -666,18 +721,17 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="64" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14404#14405#0" expanded="true" />
+            <element signature="e#14483#14484#0" expanded="true" />
+            <element signature="e#14826#14827#0" expanded="true" />
+            <element signature="e#14866#14867#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -742,6 +796,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14404#14405#0" expanded="true" />
+            <element signature="e#14483#14484#0" expanded="true" />
+            <element signature="e#14826#14827#0" expanded="true" />
+            <element signature="e#14866#14867#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -918,16 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueuePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -963,6 +1014,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -970,13 +1024,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="21" selection-start-line="50" selection-start-column="86" selection-end-line="51" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="298" column="13" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -984,6 +1034,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1098#1099#0" expanded="true" />
+            <element signature="e#1123#1124#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -995,37 +1050,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/kits/KitCQB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/arena/Arena.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/ELOManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="37" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
-          <folding>
-            <element signature="e#2305#2306#0" expanded="true" />
-            <element signature="e#2328#2329#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/kits/KitPot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1063,18 +1091,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/kits/KitCQB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="128" selection-start-line="88" selection-start-column="128" selection-end-line="88" selection-end-column="128" />
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/kits/KitPot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../Jars/spigot.jar!/org/bukkit/event/player/PlayerKickEvent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6183206">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/listeners/BukkitListeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.703704">
+          <caret line="232" column="27" selection-start-line="232" selection-start-column="27" selection-end-line="232" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14404#14405#0" expanded="true" />
+            <element signature="e#14483#14484#0" expanded="true" />
+            <element signature="e#14826#14827#0" expanded="true" />
+            <element signature="e#14866#14867#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/ELOManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.185185">
+          <caret line="42" column="36" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="36" />
+          <folding>
+            <element signature="e#2374#2375#0" expanded="true" />
+            <element signature="e#2397#2398#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueRunnable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6397059">
-          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        <state vertical-scroll-proportion="-7.185185">
+          <caret line="42" column="32" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueuePlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/minehut/pvp/queue/QueueManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41194487">
+          <caret line="88" column="71" selection-start-line="88" selection-start-column="71" selection-end-line="88" selection-end-column="71" />
           <folding />
         </state>
       </provider>

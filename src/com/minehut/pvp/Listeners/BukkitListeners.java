@@ -33,6 +33,8 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import java.util.ArrayList;
+
 /**
  * Created by luke on 5/16/15.
  */
@@ -53,7 +55,30 @@ public class BukkitListeners implements Listener {
         PlayerUtil.clearAll(player);
         player.getInventory().setItem(1, this.core.getGuiMenus().getQueueItem());
 
-        /* Divisional Armor */
+        /* Elo */
+        ArrayList<ELOManager.ELO> oldElo = this.core.getEloManager().getCachedElos(player);
+        ArrayList<ELOManager.ELO> newElo = this.core.getEloManager().updatedCachedElos(player);
+
+        /* Make sure player didn't just log in */
+        if (oldElo != null && !oldElo.isEmpty()) {
+            for (ELOManager.ELO old : oldElo) {
+                ELOManager.Division oldDivision = this.core.getEloManager().getPlayerDivisionForElo(old);
+                ELOManager.Division newDivision = this.core.getEloManager().getPlayerDivisionForElo(newElo.get(oldElo.indexOf(old)));
+
+            /* Old was worse than new */
+                if (oldDivision.compareTo(newDivision) < 0) {
+                    Bukkit.broadcastMessage("");
+                    Bukkit.broadcastMessage(C.aqua + player.getName() + C.white + " was promoted to " + C.yellow + C.bold + newDivision.name().toUpperCase());
+                    Bukkit.broadcastMessage("");
+                }
+            }
+        }
+
+        /* Equip armor */
+        this.equipDivisionalArmor(player);
+    }
+
+    public void equipDivisionalArmor(Player player) {
         ELOManager.Division division = this.core.getEloManager().getPlayerDivisionForElo(this.core.eloManager.getHighestELOAsELO(player));
         if (division == ELOManager.Division.Bronze) {
             player.getInventory().setHelmet(ItemStackFactory.createItem(Material.LEATHER_HELMET, C.yellow + "Bronze Division Helmet"));
@@ -201,7 +226,7 @@ public class BukkitListeners implements Listener {
 
         }
 
-
+        this.core.getEloManager().clearCachedEdlos(event.getPlayer());
     }
     
     @EventHandler
@@ -216,6 +241,8 @@ public class BukkitListeners implements Listener {
             core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
             Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
         }
+
+        this.core.getEloManager().clearCachedEdlos(event.getPlayer());
     }
     
     @EventHandler
