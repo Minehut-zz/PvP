@@ -103,7 +103,7 @@ public class GUIMenus implements Listener {
                 player.closeInventory();
 
                 player.sendMessage("");
-                player.sendMessage(C.white + "You have joined the " + C.aqua + type + C.white + " queue.");
+                player.sendMessage(C.white + "You have joined the " + C.aqua + type.getDisplayName() + C.white + " queue.");
                 player.sendMessage("");
             } else {
 
@@ -118,7 +118,7 @@ public class GUIMenus implements Listener {
                 player.closeInventory();
 
                 player.sendMessage("");
-                player.sendMessage(C.white + "You have joined the " + C.aqua + type + C.white + " queue.");
+                player.sendMessage(C.white + "You have joined the " + C.aqua + type.getDisplayName() + C.white + " queue.");
                 player.sendMessage("");
             }
         }

@@ -121,10 +121,13 @@ public class BukkitListeners implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         /* Clear Item Drops */
         event.getDrops().clear();
-        event.setDeathMessage(C.yellow + event.getDeathMessage());
 
         if (event.getEntity().getKiller() != null) {
             new DeathStat(this.core, event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
+            event.setDeathMessage(C.gray + "Death> " + C.green + event.getEntity().getKiller().getName() + C.purple + " beat " + C.red + event.getEntity().getName()
+                    + C.purple + " in the " + core.getArenaManager().getPlayerArena(event.getEntity()).getType().getDisplayName() + C.purple + " ladder.");
+        } else {
+            event.setDeathMessage("");
         }
 
         core.getArenaManager().getPlayerArena(event.getEntity()).end(core.getArenaManager().getPlayerArena(event.getEntity()).getEnemyTeam(event.getEntity()));

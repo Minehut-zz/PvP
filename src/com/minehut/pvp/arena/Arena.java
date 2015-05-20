@@ -113,11 +113,11 @@ public class Arena {
 	public void joinArena(Player player) {
 		Team team = this.getPlayerTeam(player);
 		if (team.equals(Team.TEAM1)) {
-			player.teleport(this.team1Spawn.getLocation());
+			player.teleport(this.team1Spawn.getLocation().add(0, 1, 0));
 			player.sendMessage("Sending you to Arena on Team 1");
 		} else
 		if (team.equals(Team.TEAM2)) {
-			player.teleport(this.team2Spawn.getLocation());
+			player.teleport(this.team2Spawn.getLocation().add(0, 1, 0));
 			player.sendMessage("Sending you to Arena on Team 2");
 		}
 		Kit kit = core.getKit(this.type.getType());
