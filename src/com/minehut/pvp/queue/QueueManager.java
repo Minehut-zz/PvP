@@ -123,5 +123,16 @@ public class QueueManager {
 		}
 		return false;
 	}
+
+	public void clearQueue() {
+		try {
+			PreparedStatement statement = this.core.api.getStatManager().getMySQL().getConnection().prepareStatement(
+					"TRUNCATE TABLE queue;");
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

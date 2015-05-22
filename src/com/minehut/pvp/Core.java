@@ -87,12 +87,16 @@ public class Core extends JavaPlugin implements Listener {
 		
 		new QueueRunnable(this).runTaskTimer(this, 0L, 20L * 5);
 
+		/* Reset arenas */
 		for (Arena arena : this.arenaManager.getArenas()) {
 			arena.setActive(false);
 			arena.getTeam1().clear();
 			arena.getTeam2().clear();
 			arena.updateArena();
 		}
+
+		/* Clear queue */
+		this.queueManager.clearQueue();
 		
 	//	Arena testArena = new Arena();
 	//	System.out.println(gson.toJson(testArena));
@@ -106,6 +110,8 @@ public class Core extends JavaPlugin implements Listener {
 			arena.getTeam2().clear();
 			arena.updateArena();
 		}
+
+		this.queueManager.clearQueue();
 	}
 	
 	
