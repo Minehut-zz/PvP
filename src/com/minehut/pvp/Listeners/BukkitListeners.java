@@ -54,6 +54,7 @@ public class BukkitListeners implements Listener {
         player.setPlayerWeather(WeatherType.CLEAR);
         PlayerUtil.clearAll(player);
         player.getInventory().setItem(1, this.core.getGuiMenus().getQueueItem());
+        player.getInventory().setItem(8, this.core.getGuiMenus().getEloItem());
 
 //        if(this.core.getEloManager().hasELO(event.getPlayer())) {
 //            /* Elo */

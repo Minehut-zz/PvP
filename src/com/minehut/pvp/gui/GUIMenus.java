@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +29,9 @@ public class GUIMenus implements Listener {
     private Inventory queueInv;
     private ItemStack queueItem;
 
+    /* ELO */
+    private ItemStack eloItem;
+
     public GUIMenus(Core core) {
         this.core = core;
         Bukkit.getServer().getPluginManager().registerEvents(this, core);
@@ -36,6 +40,9 @@ public class GUIMenus implements Listener {
         this.queueItem = ItemStackFactory.createItem(Material.DIAMOND_SWORD, C.aqua + C.bold + "Join Queue");
         this.createQueueInv();
         this.queueMenuUpdater();
+
+        /* ELO */
+        this.eloItem = ItemStackFactory.createItem(Material.GOLD_HELMET, C.green + "/elo");
 
     }
 
@@ -146,9 +153,18 @@ public class GUIMenus implements Listener {
         Player player = event.getPlayer();
         if (player.getItemInHand() != null && player.getItemInHand().getItemMeta() != null) {
             if (player.getItemInHand().getItemMeta().getDisplayName() != null) {
+
+                /* Queue Inventory */
                 if (player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(queueItem.getItemMeta().getDisplayName())) {
                     event.setCancelled(true);
                     player.openInventory(this.queueInv);
+                    return;
+                }
+
+                /* ELO Item */
+                if (player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(eloItem.getItemMeta().getDisplayName())) {
+                    Bukkit.getServer().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(player, "/elo"));
+                    return;
                 }
             }
         }
@@ -158,5 +174,7 @@ public class GUIMenus implements Listener {
         return queueItem;
     }
 
-
+    public ItemStack getEloItem() {
+        return eloItem;
+    }
 }

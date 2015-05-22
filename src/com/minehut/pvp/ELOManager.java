@@ -96,10 +96,13 @@ public class ELOManager {
 	public enum Division {
 		Bronze("Bronze"), Silver("Silver"), Gold("Gold"), Platinum("Platinum"), Diamond("Diamond"), UnRanked("Unranked");
 
-		private String div;
-		private String color;
-		private Division(String div) {
-			this.div = div;
+		private String displayName;
+		private Division(String displayName) {
+			this.displayName = displayName;
+		}
+
+		public String getDisplayName() {
+			return displayName;
 		}
 	}
 
