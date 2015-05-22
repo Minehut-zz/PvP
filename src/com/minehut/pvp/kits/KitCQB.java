@@ -2,8 +2,10 @@ package com.minehut.pvp.kits;
 
 import com.minehut.api.util.kit.Kit;
 import com.minehut.api.util.player.GamePlayer;
+import com.minehut.commons.common.items.GameItemStackEnchantment;
 import com.minehut.commons.common.items.ItemStackFactory;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -12,14 +14,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class KitCQB extends Kit {
 
     public KitCQB(JavaPlugin plugin) {
-        super(plugin, "Melee", Material.STONE_SWORD, 0);
+        super(plugin, "CQB", Material.STONE_SWORD, 0);
 
-        super.addItem(ItemStackFactory.createItem(Material.STONE_SWORD));
+        super.addItem(ItemStackFactory.createItem(Material.STONE_SWORD, new GameItemStackEnchantment(Enchantment.DURABILITY, 5)));
 
-        super.addItem(ItemStackFactory.createItem(Material.IRON_HELMET));
-        super.addItem(ItemStackFactory.createItem(Material.IRON_CHESTPLATE));
-        super.addItem(ItemStackFactory.createItem(Material.IRON_LEGGINGS));
-        super.addItem(ItemStackFactory.createItem(Material.IRON_BOOTS));
+        super.addItem(ItemStackFactory.createItem(Material.IRON_HELMET, new GameItemStackEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1)));
+        super.addItem(ItemStackFactory.createItem(Material.IRON_CHESTPLATE, new GameItemStackEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1)));
+        super.addItem(ItemStackFactory.createItem(Material.IRON_LEGGINGS, new GameItemStackEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1)));
+        super.addItem(ItemStackFactory.createItem(Material.IRON_BOOTS, new GameItemStackEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1)));
     }
 
     @Override

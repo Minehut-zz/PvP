@@ -273,7 +273,9 @@ public class BukkitListeners implements Listener {
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
         if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
-            return; //Allow drops in game
+            event.setCancelled(true);
+            event.getPlayer().updateInventory();
+            return; //Don't allow drops in game
         }
 
         if (!API.getAPI().getGamePlayer(event.getPlayer()).getRank().has(null, Rank.Admin, false)) {

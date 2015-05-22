@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionType;
 public class KitPot extends Kit {
 
     public KitPot(JavaPlugin plugin) {
-        super(plugin, "Pot", Material.POTION, 0);
+        super(plugin, "POT", Material.POTION, 0);
 
         super.addItem(ItemStackFactory.createItem(Material.DIAMOND_SWORD, new GameItemStackEnchantment(Enchantment.DAMAGE_ALL, 5), new GameItemStackEnchantment(Enchantment.DURABILITY, 3), new GameItemStackEnchantment(Enchantment.FIRE_ASPECT, 2)));
         super.addItem(ItemStackFactory.createItem(Material.BOW, new GameItemStackEnchantment(Enchantment.ARROW_DAMAGE, 2), new GameItemStackEnchantment(Enchantment.ARROW_FIRE, 1), new GameItemStackEnchantment(Enchantment.ARROW_INFINITE, 1)));

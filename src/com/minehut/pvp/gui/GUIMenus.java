@@ -48,6 +48,7 @@ public class GUIMenus implements Listener {
                 for (ArenaType arenaType : ArenaType.values()) {
                     queueInv.addItem(getQueueIcon(arenaType));
                 }
+                queueInv.setItem(8, ItemStackFactory.createItem(Material.REDSTONE, C.red + C.bold + "LEAVE QUEUE"));
             }
         }, 20, 20 * 3);
     }
@@ -58,6 +59,8 @@ public class GUIMenus implements Listener {
         for (ArenaType arenaType : ArenaType.values()) {
             this.queueInv.addItem(getQueueIcon(arenaType));
         }
+
+        this.queueInv.setItem(8, ItemStackFactory.createItem(Material.REDSTONE, C.red + C.bold + "LEAVE QUEUE"));
     }
 
     private ItemStack getQueueIcon(ArenaType arenaType) {
@@ -92,6 +95,20 @@ public class GUIMenus implements Listener {
             }
 
             if (event.getCurrentItem().getItemMeta() == null || event.getCurrentItem().getItemMeta().getDisplayName() == null) {
+                return;
+            }
+
+            /* Leave Queue button */
+            if (event.getCurrentItem().getType() == Material.REDSTONE) {
+                if (this.core.queueManager.isPlayerInQueue(player.getUniqueId())) {
+                    this.core.queueManager.leaveQueue(player.getUniqueId());
+                }
+                player.closeInventory();
+                S.pling(player);
+                player.sendMessage("");
+                player.sendMessage(C.white + "You have " + C.red + "left " + C.white + "the queue.");
+                player.sendMessage("");
+
                 return;
             }
 
