@@ -26,6 +26,7 @@ import com.minehut.pvp.queue.QueueManager;
 import com.minehut.pvp.queue.QueueRunnable;
 
 import com.minehut.pvp.stats.KillsManager;
+import com.minehut.status.Status;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -101,6 +102,9 @@ public class Core extends JavaPlugin implements Listener {
 
 		/* Clear queue */
 		this.queueManager.clearQueue();
+
+		/* Global Server Status */
+		Status.getStatus().startStatusUpload("pvp", "PvP", "pvp", "Official Competitive PvP Server");
 		
 	//	Arena testArena = new Arena();
 	//	System.out.println(gson.toJson(testArena));
