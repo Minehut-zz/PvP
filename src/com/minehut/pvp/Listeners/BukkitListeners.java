@@ -363,9 +363,9 @@ public class BukkitListeners implements Listener {
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
-        if (!this.core.getArenaManager().isPlayerInArena(event.getPlayer())) {
-            if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
+    public void onInteract(InventoryClickEvent event) {
+        if (!this.core.getArenaManager().isPlayerInArena(((Player) event.getWhoClicked()))) {
+            if (((Player) event.getWhoClicked()).getGameMode() != GameMode.CREATIVE) {
                 event.setCancelled(true);
             }
         }

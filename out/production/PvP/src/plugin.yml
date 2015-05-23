@@ -2,7 +2,7 @@ name: PvP
 main: com.minehut.pvp.Core
 author: Minehut
 version: 1.0
-depend: [API, Commons, Connector]
+depend: [API, Commons, Connector, Status]
 commands:
   play:
     description: Join a PvP queue!

@@ -1,6 +1,7 @@
 package com.minehut.pvp.gui;
 
 import com.minehut.commons.common.chat.C;
+import com.minehut.commons.common.items.EnchantGlow;
 import com.minehut.commons.common.items.ItemStackFactory;
 import com.minehut.commons.common.sound.S;
 import com.minehut.pvp.Core;
@@ -42,7 +43,9 @@ public class GUIMenus implements Listener {
         this.queueMenuUpdater();
 
         /* ELO */
-        this.eloItem = ItemStackFactory.createItem(Material.GOLD_HELMET, C.green + "/elo");
+        ItemStack book = ItemStackFactory.createItem(Material.BOOK, C.green + "/elo");
+        EnchantGlow.addGlow(book);
+        this.eloItem = book;
 
     }
 

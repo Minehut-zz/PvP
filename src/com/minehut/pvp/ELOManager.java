@@ -77,16 +77,16 @@ public class ELOManager {
 		if (elo.currentELO > 0 && elo.currentELO < 1149) {
 			return Division.Bronze;
 		} else
-		if (elo.currentELO > 1150 && elo.currentELO < 1499) {
+		if (elo.currentELO >= 1150 && elo.currentELO < 1499) {
 			return Division.Silver;
 		} else
-		if (elo.currentELO > 1500 && elo.currentELO < 1849) {
+		if (elo.currentELO >= 1500 && elo.currentELO < 1849) {
 			return Division.Gold;
 		} else
-		if (elo.currentELO > 1850 && elo.currentELO < 2199) {
+		if (elo.currentELO >= 1850 && elo.currentELO < 2199) {
 			return Division.Platinum;
 		} else
-		if (elo.currentELO > 2200) {
+		if (elo.currentELO >= 2200) {
 			return Division.Diamond;
 		} else {
 			return Division.UnRanked;

@@ -30,15 +30,22 @@ public class EloCommand extends Command {
 
         for (ArenaType arenaType : ArenaType.values()) {
             F.log("searching for elo of type: " + arenaType.getType());
-            ELOManager.ELO elo = core.getEloManager().getELOInArena(player, arenaType);
 
-            if (elo.currentELO > 500) {
-                player.sendMessage(arenaType.getDisplayName() + C.gray + ":  " + C.white
-                        + core.getEloManager().getPlayerDivisionForElo(elo).getDisplayName()
-                        + C.gray + " [" + Integer.toString(elo.currentELO) + "]");
-            } else {
+            if(core.getEloManager().hasELO(player)) {
+                ELOManager.ELO elo = core.getEloManager().getELOInArena(player, arenaType);
+
+                if (elo.currentELO > 500) {
+                    player.sendMessage(arenaType.getDisplayName() + C.gray + ":  " + C.white
+                            + core.getEloManager().getPlayerDivisionForElo(elo).getDisplayName()
+                            + C.gray + " [" + Integer.toString(elo.currentELO) + "]");
+                } else {
                 /* Unranked */
-                player.sendMessage(arenaType.getDisplayName() + C.gray + ":  " + C.white + "Unranked");
+                    player.sendMessage(arenaType.getDisplayName() + C.gray + ":  " + C.white + "Unranked");
+                }
+            } else {
+                player.sendMessage(arenaType.getDisplayName() + C.gray + ":  " + C.white
+                        + "Unranked"
+                        + C.gray + " [1050]");
             }
         }
 
