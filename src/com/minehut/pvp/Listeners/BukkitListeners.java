@@ -29,11 +29,15 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by luke on 5/16/15.
@@ -124,9 +128,12 @@ public class BukkitListeners implements Listener {
         event.getDrops().clear();
 
         if (event.getEntity().getKiller() != null) {
-            new DeathStat(this.core, event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
+//            new DeathStat(this.core, event.getEntity().getKiller(), event.getEntity(), core.getArenaManager().getPlayerArena(event.getEntity()).getType());
             event.setDeathMessage(C.gray + "Death> " + C.green + event.getEntity().getKiller().getName() + C.purple + " beat " + C.red + event.getEntity().getName()
                     + C.purple + " in the " + core.getArenaManager().getPlayerArena(event.getEntity()).getType().getDisplayName() + C.purple + " ladder.");
+
+            this.core.getKillsManager().addKill(event.getEntity().getKiller());
+            this.core.getKillsManager().addDeath(event.getEntity());
         } else {
             event.setDeathMessage("");
         }
@@ -219,6 +226,8 @@ public class BukkitListeners implements Listener {
             this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
 
+        this.core.getKillsManager().setupPlayer(event.getPlayer());
+
         EventCaller.callSpawnPreparePlayer(event.getPlayer());
     }
 
@@ -230,10 +239,32 @@ public class BukkitListeners implements Listener {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
         if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+            Team enemyTeam = core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer());
+            if (enemyTeam == Team.TEAM1) {
+                for (UUID uuid : this.core.getArenaManager().getPlayerArena(event.getPlayer()).getTeam1()) {
+                    Player player = Bukkit.getServer().getPlayer(uuid);
+                    if (player != null) {
+                        this.core.getKillsManager().addKill(player);
+                    }
+                }
+            } else if (enemyTeam == Team.TEAM2) {
+                for (UUID uuid : this.core.getArenaManager().getPlayerArena(event.getPlayer()).getTeam2()) {
+                    Player player = Bukkit.getServer().getPlayer(uuid);
+                    if (player != null) {
+                        this.core.getKillsManager().addKill(player);
+                    }
+                }
+            }
 
-            core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
-            Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
+            this.core.getKillsManager().addDeath(event.getPlayer());
+            /* todo: this will need changing for teams */
+            Player enemy = Bukkit.getPlayer(this.core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeamList(event.getPlayer()).get(0));
+            this.core.getKillsManager().addKill(enemy);
 
+            event.setQuitMessage(C.gray + "Death> " + C.green + enemy.getName() + C.purple + " beat " + C.red + event.getPlayer().getName()
+                    + C.purple + " in the " + core.getArenaManager().getPlayerArena(event.getPlayer()).getType().getDisplayName() + C.purple + " ladder.");
+
+            core.getArenaManager().getPlayerArena(event.getPlayer()).end(enemyTeam);
         }
 
         this.core.getEloManager().clearCachedEdlos(event.getPlayer());
@@ -247,9 +278,32 @@ public class BukkitListeners implements Listener {
         	this.core.queueManager.leaveQueue(event.getPlayer().getUniqueId());
         }
         if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+            Team enemyTeam = core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer());
+            if (enemyTeam == Team.TEAM1) {
+                for (UUID uuid : this.core.getArenaManager().getPlayerArena(event.getPlayer()).getTeam1()) {
+                    Player player = Bukkit.getServer().getPlayer(uuid);
+                    if (player != null) {
+                        this.core.getKillsManager().addKill(player);
+                    }
+                }
+            } else if (enemyTeam == Team.TEAM2) {
+                for (UUID uuid : this.core.getArenaManager().getPlayerArena(event.getPlayer()).getTeam2()) {
+                    Player player = Bukkit.getServer().getPlayer(uuid);
+                    if (player != null) {
+                        this.core.getKillsManager().addKill(player);
+                    }
+                }
+            }
 
-            core.getArenaManager().getPlayerArena(event.getPlayer()).end(core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeam(event.getPlayer()));
-            Bukkit.broadcastMessage(C.red + event.getPlayer().getName() + C.white + " has lost!");
+            this.core.getKillsManager().addDeath(event.getPlayer());
+            /* todo: this will need changing for teams */
+            Player enemy = Bukkit.getPlayer(this.core.getArenaManager().getPlayerArena(event.getPlayer()).getEnemyTeamList(event.getPlayer()).get(0));
+            this.core.getKillsManager().addKill(enemy);
+
+            event.setLeaveMessage(C.gray + "Death> " + C.green + enemy.getName() + C.purple + " beat " + C.red + event.getPlayer().getName()
+                    + C.purple + " in the " + core.getArenaManager().getPlayerArena(event.getPlayer()).getType().getDisplayName() + C.purple + " ladder.");
+
+            core.getArenaManager().getPlayerArena(event.getPlayer()).end(enemyTeam);
         }
 
         this.core.getEloManager().clearCachedEdlos(event.getPlayer());
@@ -273,14 +327,10 @@ public class BukkitListeners implements Listener {
 
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
-        if (this.core.arenaManager.isPlayerInArena(event.getPlayer())) {
+        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             event.setCancelled(true);
-            event.getPlayer().updateInventory();
-            return; //Don't allow drops in game
-        }
-
-        if (!API.getAPI().getGamePlayer(event.getPlayer()).getRank().has(null, Rank.Admin, false)) {
-            event.setCancelled(true);
+            event.getPlayer().setItemInHand(ItemStackFactory.createItem(Material.AIR));
+            event.getPlayer().setItemInHand(event.getItemDrop().getItemStack());
             event.getPlayer().updateInventory();
         }
     }
@@ -313,11 +363,56 @@ public class BukkitListeners implements Listener {
     }
 
     @EventHandler
-    public void onMoveInventory(InventoryMoveItemEvent event) {
-        if (this.core.arenaManager.isPlayerInArena((Player) event.getSource().getHolder())) {
-            return; //Allow inv move in game
+    public void onInteract(PlayerInteractEvent event) {
+        if (!this.core.getArenaManager().isPlayerInArena(event.getPlayer())) {
+            if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
+                event.setCancelled(true);
+            }
         }
-        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if (this.core.getArenaManager().isPlayerInArena((Player) event.getWhoClicked())) {
+            return;
+        }
+
+        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryMoveItemEvent event) {
+        if (this.core.getArenaManager().isPlayerInArena(((Player) event.getSource().getHolder()))) {
+            return;
+        }
+
+        if (((Player) event.getSource().getHolder()).getGameMode() != GameMode.CREATIVE) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent event) {
+        if (this.core.getArenaManager().isPlayerInArena((Player) event.getWhoClicked())) {
+            return;
+        }
+
+        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryInteract(InventoryInteractEvent event) {
+        if (this.core.getArenaManager().isPlayerInArena((Player) event.getWhoClicked())) {
+            return;
+        }
+
+        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler

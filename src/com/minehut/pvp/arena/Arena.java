@@ -150,6 +150,19 @@ public class Arena {
 			return null; //spectator call
 		}
 	}
+
+	public ArrayList<UUID> getEnemyTeamList(Player player) {
+		Team playerTeam = getPlayerTeam(player);
+
+		if (playerTeam == Team.TEAM1) {
+			return this.team1;
+		} else if (playerTeam == Team.TEAM2) {
+			return this.team2;
+		} else {
+			F.log("tried to find opposite of spectator or null team.");
+			return null; //spectator call
+		}
+	}
 	
 	public enum Team {
 		TEAM1, TEAM2, SPEC_OR_UNKNOWN;

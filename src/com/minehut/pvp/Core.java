@@ -25,6 +25,7 @@ import com.minehut.pvp.kits.KitRanged;
 import com.minehut.pvp.queue.QueueManager;
 import com.minehut.pvp.queue.QueueRunnable;
 
+import com.minehut.pvp.stats.KillsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -47,6 +48,8 @@ public class Core extends JavaPlugin implements Listener {
 	public ArenaManager arenaManager;
 
 	public ELOManager eloManager;
+
+	public KillsManager killsManager;
 	
 	public BukkitListeners bukkitListeners;
 	public GUIMenus guiMenus;
@@ -72,6 +75,7 @@ public class Core extends JavaPlugin implements Listener {
 		this.bukkitListeners = new BukkitListeners(this);
 		this.eloManager = new ELOManager(this);
 		this.guiMenus = new GUIMenus(this);
+		this.killsManager = new KillsManager(this);
 
 		/* Commands */
 		new CreateArenaCommand(this);
@@ -204,5 +208,9 @@ public class Core extends JavaPlugin implements Listener {
 
 	public ELOManager getEloManager() {
 		return eloManager;
+	}
+
+	public KillsManager getKillsManager() {
+		return killsManager;
 	}
 }
